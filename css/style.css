@@ -1,0 +1,352 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /*Degradado de colores a la pagina*/
+  background: radial-gradient(
+      circle at 50% 0,
+      rgba(218, 0, 0, 0.5),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    radial-gradient(circle at 6.7% 75%, #ffdddd, rgba(0, 0, 255, 0) 70.71%),
+    radial-gradient(
+        circle at 93.3% 75%,
+        rgba(0, 255, 0, 0.5),
+        rgba(0, 255, 0, 0) 70.71%
+      )
+      rgb(255, 255, 13);
+  border-radius: 50%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: "Courier New", Courier, monospace;
+}
+body {
+  /*Grip para la estructura de la página*/
+  display: grid;
+  grid-template-areas:
+    "head"
+    "nava"
+    "asid"
+    "main"
+    "foot";
+}
+
+header {
+  /*Cabecera, separa los 3 objetos del header entre ellos **/
+  grid-area: head;
+  background-color: #3b56d1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+header span {
+  /*Estilos del titulo de la página */
+  font-family: "Sixtyfour Convergence", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: "BLED" 0, "SCAN" 0, "XELA" 0, "YELA" 0;
+  font-size: 2.5rem;
+}
+header a {
+  font-size: 1rem;
+}
+
+header svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.headerIcon {
+  display: flex;
+  flex-direction: row;
+}
+
+.headerIcon > a {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+nav {
+  /*Barra de navegacion de plataformas de juegos*/
+  grid-area: nava;
+  padding: 1rem;
+  /*background: linear-gradient(#ffdddd, #ddffdd);*/
+  background-color: #8080ff;
+}
+
+nav div {
+  display: flex;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav a {
+  font-size: 1.5rem;
+}
+
+aside {
+  /*Aside*/
+  grid-area: asid;
+  padding: 1rem;
+  background-color: #e9912dbe;
+}
+
+aside a {
+  font-size: 1.4rem;
+}
+
+nav,
+aside {
+  /*A las barras de navegacion le ponemos el mismo formato de letra*/
+  font-family: "Vast Shadow", serif;
+  font-style: normal;
+}
+main {
+  /*Contenedor de sección*/
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background-color: #ffffdd;
+}
+
+section {
+  /*Contenedor de articulos*/
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.newSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newSection div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+section > h1 {
+  font-family: "Teko", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+article {
+  /*Producto*/
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 5px;
+  align-items: center;
+  border: 0;
+}
+article > span {
+  font-size: 1.1rem;
+}
+.price {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+footer {
+  /*Footer*/
+  grid-area: foot;
+  display: grid;
+  height: auto;
+  grid-gap: 1rem;
+  padding: 1rem;
+}
+
+footer {
+  font-family: "Open Sans", sans-serif;
+}
+
+aside span {
+  /*Encabezados del footer y del aside*/
+  font-size: 1.45rem;
+  font-weight: bold;
+}
+footer span {
+  /*Encabezados del footer y del aside*/
+  font-size: 1.05rem;
+  font-weight: bold;
+}
+
+footer ul {
+  display: flex;
+  flex-direction: column;
+}
+ul > li {
+  margin: 0.2rem;
+  padding: 0.2rem;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-block: auto;
+  list-style-type: none;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  border: 1px;
+  border-radius: 12px;
+}
+
+p {
+  font-size: 1rem;
+}
+a {
+  text-decoration: none;
+  font-size: 1rem;
+  justify-content: center;
+  color: aliceblue;
+}
+
+.copy svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* Tablets y phablets  2 */
+@media screen and (min-width: 576px) {
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+@media screen and (min-width: 912px),
+  (min-width: 576px) and (orientation: landscape) {
+  body {
+    display: grid;
+    grid-template-areas:
+      "head head head head head"
+      "nava nava nava nava nava"
+      "asid main main main main"
+      "foot foot foot foot foot";
+  }
+  header {
+    grid-area: head;
+  }
+  nav {
+    grid-area: nava;
+  }
+  aside {
+    grid-area: asid;
+  }
+  main {
+    grid-area: main;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  aside ul {
+    display: flex;
+    flex-direction: column;
+  }
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  footer {
+    grid-area: foot;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .copy {
+    grid-column-end: span 3;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .copy div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
+
+/* Escritorio grande */
+@media screen and (min-width: 1024px) {
+  body {
+    display: grid;
+    grid-template-areas:
+      "head head head head head"
+      "nava main main main main"
+      "asid main main main main"
+      "asid main main main main"
+      "asid main main main main"
+      "asid main main main main"
+      "foot foot foot foot foot";
+  }
+  header {
+    grid-area: head;
+  }
+  nav {
+    grid-area: nava;
+  }
+  nav ul {
+    display: flex;
+    flex-direction: column;
+  }
+  aside {
+    grid-area: asid;
+  }
+
+  aside ul {
+    display: flex;
+    flex-direction: column;
+  }
+  main {
+    grid-area: main;
+  }
+
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+
+  footer {
+    grid-area: foot;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .copy {
+    grid-column-end: span 3;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .copy div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+}
