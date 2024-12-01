@@ -1,0 +1,65 @@
+section {
+  /*Contenedor de articulos*/
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.newSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.newSection div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+section > h1 {
+  font-family: "Teko", sans-serif;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+article {
+  /*Producto*/
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 12px;
+  padding: 5px;
+  align-items: center;
+  border: 0;
+}
+article > span {
+  font-size: 1.1rem;
+}
+.price {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Tablets y phablets  2 */
+@media screen and (min-width: 576px) {
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+@media screen and (min-width: 912px),
+  (min-width: 576px) and (orientation: landscape) {
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* Escritorio grande */
+@media screen and (min-width: 1024px) {
+  section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
