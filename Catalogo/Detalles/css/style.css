@@ -1,0 +1,170 @@
+
+section {
+  /*Contenedor de articulos*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*Botones de diurno y nocturno*/
+.sectColores {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  color: #fff;
+}
+
+article {
+  border: 1px solid black;
+  border-radius: 12px;
+  color: var(--color-texto);
+  background-color: var(--color-producto);
+}
+
+article > section { /*Secciones del juego*/
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  padding: 1rem;
+}
+h1, h2 {
+  font-size: 2rem;
+  color: var(--color-enfasis);
+}
+
+.mainProduc {/*Contenido principal del juego*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.8rem;
+}
+.acercaDe {
+  margin-bottom: 1rem;
+}
+tbody {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+tr {
+  display: flex;
+  flex-direction: column;
+  margin: 0.2rem;
+}
+td {
+  margin-bottom: 1rem;
+}
+.creador td{
+  font-weight: bold;
+}
+
+article button {
+  border: 1px solid black;
+  border-radius: 12px;
+  background-color: var(--color-enfasis);
+}
+article button a {
+  margin: 0.2rem;
+  font-size: 1.8rem;
+}
+.visuales{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  padding: 1rem;
+}
+.visuales h2 {
+  align-self: flex-start;
+}
+.videosImg {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  padding: 1rem;
+}
+.videosImg > div{
+display: grid;
+grid-template-columns:1fr;
+width: 100%;
+height: 100%;
+}
+select{
+padding: 0.5rem;
+border: 1px;
+font-size: 1.5rem;
+background:  var(--color-bar-primario);
+color:  var(--color-enfasis);
+}
+
+video {
+  max-width: 100%;
+  max-height: 100%;
+}
+.videosImg > div >div{
+  margin: 0.2rem;
+  padding: 0.2rem;
+  }
+
+.price {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+.platform{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.platform div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 0.2rem;
+  padding: 0.2rem;
+}
+.platform div svg{
+  height: 1rem;
+  width:  1rem;
+  justify-content: center;
+  margin: 0.2rem;
+}
+
+h1, h2 {
+  font-size: 2rem;
+  color: var(--color-enfasis);
+}
+
+/* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+@media screen and (min-width: 912px),
+  (min-width: 576px) and (orientation: landscape) {
+  .videosImg > div{
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    }
+}
+
+/* Escritorio grande */
+@media screen and (min-width: 1024px) {
+
+  article > section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    height: 100%;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  article .details {
+    display: grid;
+    grid-template-columns: auto auto auto;
+  }
+  .videosImg > div{
+    display: grid;
+    grid-template-columns:1fr 1fr;
+    }
+}

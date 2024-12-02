@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Danfo:ELSH@100&family=Teko:wght@300..700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../css/general.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!--Header-->
+    <header>
+        <div class="headerIcon">
+            <svg fill="currentColor" class="bi bi-controller" viewBox="0 0 16 16">
+                <path
+                    d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1z" />
+                <path
+                    d="M3.051 3.26a.5.5 0 0 1 .354-.613l1.932-.518a.5.5 0 0 1 .62.39c.655-.079 1.35-.117 2.043-.117.72 0 1.443.041 2.12.126a.5.5 0 0 1 .622-.399l1.932.518a.5.5 0 0 1 .306.729q.211.136.373.297c.408.408.78 1.05 1.095 1.772.32.733.599 1.591.805 2.466s.34 1.78.364 2.606c.024.816-.059 1.602-.328 2.21a1.42 1.42 0 0 1-1.445.83c-.636-.067-1.115-.394-1.513-.773-.245-.232-.496-.526-.739-.808-.126-.148-.25-.292-.368-.423-.728-.804-1.597-1.527-3.224-1.527s-2.496.723-3.224 1.527c-.119.131-.242.275-.368.423-.243.282-.494.575-.739.808-.398.38-.877.706-1.513.773a1.42 1.42 0 0 1-1.445-.83c-.27-.608-.352-1.395-.329-2.21.024-.826.16-1.73.365-2.606.206-.875.486-1.733.805-2.466.315-.722.687-1.364 1.094-1.772a2.3 2.3 0 0 1 .433-.335l-.028-.079zm2.036.412c-.877.185-1.469.443-1.733.708-.276.276-.587.783-.885 1.465a14 14 0 0 0-.748 2.295 12.4 12.4 0 0 0-.339 2.406c-.022.755.062 1.368.243 1.776a.42.42 0 0 0 .426.24c.327-.034.61-.199.929-.502.212-.202.4-.423.615-.674.133-.156.276-.323.44-.504C4.861 9.969 5.978 9.027 8 9.027s3.139.942 3.965 1.855c.164.181.307.348.44.504.214.251.403.472.615.674.318.303.601.468.929.503a.42.42 0 0 0 .426-.241c.18-.408.265-1.02.243-1.776a12.4 12.4 0 0 0-.339-2.406 14 14 0 0 0-.748-2.295c-.298-.682-.61-1.19-.885-1.465-.264-.265-.856-.523-1.733-.708-.85-.179-1.877-.27-2.913-.27s-2.063.091-2.913.27" />
+            </svg>
+        </div>
+        <span><a href="../../index.html">POPGAMES</a></span>
+        <div class="headerIcon">
+            <select class="form-select" id="diaNoc">
+                <option onclick="diurnoNocturno()" value="diurno">Diurno</option>
+                <option onclick="diurnoNocturno()" value="nocturno">Nocturno</option>
+              </select>
+              <select class="form-select" id="contraste">
+                <option onclick="diurnoNocturno()" value="alto">Alto</option>
+                <option onclick="diurnoNocturno()" value="bajo">Bajo</option>
+              </select>
+            <a href="#">Contactenos
+                <svg fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                    <path
+                        d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
+                </svg>
+            </a>
+            <a href="#">
+                <svg fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                    <path fill-rule="evenodd"
+                        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                </svg>
+            </a>
+        </div>
+    </header>
+    <!---->
+    <!--Barra de navegacion-->
+    <nav>
+        <ul>
+            <li><a href="#">Steam</a></li>
+            <li><a href="#">Battle.net</a></li>
+            <li><a href="#">EA</a></li>
+            <li><a href="#">Ubisoft</a></li>
+        </ul>
+    </nav>
+    <!---->
+    <!--Aside-->
+    <aside>
+        <span>Categorias</span>
+        <ul>
+            <li><a href="#">Gratis</a></li>
+            <li><a href="#">Acción</a></li>
+            <li><a href="#">Aventuras</a></li>
+            <li><a href="#">MMO</a></li>
+            <li><a href="#">MMO RPG</a></li>
+            <li><a href="#">Rol</a></li>
+            <li><a href="#">Multijugador</a></li>
+            <li><a href="#">Cooperativo</a></li>
+            <li><a href="#">Deportes</a></li>
+            <li><a href="#">Futbol</a></li>
+            <li><a href="#">Carreras</a></li>
+            <li><a href="#">Estrategia</a></li>
+            <li><a href="#">Gratis</a></li>
+            <li><a href="#">Acción</a></li>
+            <li><a href="#">Aventuras</a></li>
+            <li><a href="#">MMO</a></li>
+            <li><a href="#">MMO RPG</a></li>
+            <li><a href="#">Rol</a></li>
+            <li><a href="#">Multijugador</a></li>
+            <li><a href="#">Cooperativo</a></li>
+            <li><a href="#">Deportes</a></li>
+            <li><a href="#">Futbol</a></li>
+            <li><a href="#">Carreras</a></li>
+            <li><a href="#">Estrategia</a></li>
+        </ul>
+    </aside>
+    <!---->
+    <!--Main-->
+    <main>    
+        <section>
+            <!--Juego-->
+            <article>
+                <!--Seccion-juego-principal-->
+                <section>
+                    <div><img src="img/supermario.png"></div>
+                    <!--Contenido principal del juego-->
+                    <div class="mainProduc">
+                        <h1>Super Mario</h1>
+                        <div class="platform">
+                            <div> <svg fill="currentColor" class="bi bi-nintendo-switch" viewBox="0 0 16 16">
+                                    <path
+                                        d="M9.34 8.005c0-4.38.01-7.972.023-7.982C9.373.01 10.036 0 10.831 0c1.153 0 1.51.01 1.743.05 1.73.298 3.045 1.6 3.373 3.326.046.242.053.809.053 4.61 0 4.06.005 4.537-.123 4.976-.022.076-.048.15-.08.242a4.14 4.14 0 0 1-3.426 2.767c-.317.033-2.889.046-2.978.013-.05-.02-.053-.752-.053-7.979m4.675.269a1.62 1.62 0 0 0-1.113-1.034 1.61 1.61 0 0 0-1.938 1.073 1.9 1.9 0 0 0-.014.935 1.63 1.63 0 0 0 1.952 1.107c.51-.136.908-.504 1.11-1.028.11-.285.113-.742.003-1.053M3.71 3.317c-.208.04-.526.199-.695.348-.348.301-.52.729-.494 1.232.013.262.03.332.136.544.155.321.39.556.712.715.222.11.278.123.567.133.261.01.354 0 .53-.06.719-.242 1.153-.94 1.03-1.656-.142-.852-.95-1.422-1.786-1.256" />
+                                    <path
+                                        d="M3.425.053a4.14 4.14 0 0 0-3.28 3.015C0 3.628-.01 3.956.005 8.3c.01 3.99.014 4.082.08 4.39.368 1.66 1.548 2.844 3.224 3.235.22.05.497.06 2.29.07 1.856.012 2.048.009 2.097-.04.05-.05.053-.69.053-7.94 0-5.374-.01-7.906-.033-7.952-.033-.06-.09-.063-2.03-.06-1.578.004-2.052.014-2.26.05Zm3 14.665-1.35-.016c-1.242-.013-1.375-.02-1.623-.083a2.81 2.81 0 0 1-2.08-2.167c-.074-.335-.074-8.579-.004-8.907a2.85 2.85 0 0 1 1.716-2.05c.438-.176.64-.196 2.058-.2l1.282-.003v13.426Z" />
+                                </svg>Switch</div>
+                            <div> <svg fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                </svg>En stock</div>
+                            <div>
+                                <svg fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                    <path
+                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                    <path
+                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                                </svg>Descarga Digital
+                            </div>
+                        </div>
+                        <span>100 Unidades vendidas</span>
+                        <span>Rating: 70 %</span>
+                        <span class="price">39.99 €</span>
+
+                        <div><button><a href="#">Comprar</a></button>
+                            <button><a href="#">Añadir al carrito</a></button>
+                        </div>
+
+                    </div>
+                </section>
+                <!---->
+                <!--Seccion-juego-detalles-->
+                <section class="details">
+                    <div class="acercaDe">
+                        <h2>Acerca de</h2>
+                        <span>
+                            <p>!Disfruta de lo lindo en la nueva entrega de Mario Party, con siete tableros y más de 110
+                                minijuegos!</p>
+                            <br>
+                            <p>  Descubre siete tableros en total: déjate llevar por el flujo de las mareas en la isla
+                                Goomba; lánzate a buscar estrellas en las Galerías Arcoíris; regresa a los clásicos entornos
+                                del mundo del Oeste y el castillo arcoíris de Mario, procedentes de entregas anteriores, ¡y
+                                más!</p>
+                            <br>
+                            <p>  Acelera por el tablero en el Bowseratlón, una competición en línea para 20 personas que se
+                                incorpora por primera vez a la serie, y en la que el objetivo es obtener las mejores
+                                puntuaciones en minijuegos como la vertiginosa Hiperautopista. Cuanto más alta sea tu
+                                puntuación en cada ronda, más rápido alcanzarás la meta. El Bowseratlón es solo uno de los
+                                numerosos modos adicionales. ¡Seguro que todos los jugadores de Mario Party encontrarán
+                                alguno que sea de su gusto!</p>
+                          </span>
+                    </div>
+                    <div>
+                        <table>
+                            <tr class="creador">
+                                <td>Desarrollador:</td>
+                                <td>Distribuidor:</td>
+                                <td>Fecha de lanzamiento:</td>
+                                <td>Género:</td>
+
+                            </tr>
+                            <tr>
+                                <td> Deck Nine Games</td>
+                                <td> Square Enix</td>
+                                <td> 29 octubre 2024 </td>
+                                <td><a href="#">Acción</a>, <a href="#">Aventura</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </section>
+                <!---->
+                <!--Seccion-juego-visuales-->
+                <section class="visuales">
+                    <h2>Visuales</h2>
+                    <div class="videosImg">
+                        <video controls>
+                            <source src="./video/SuperMarioPartyJamboree.mp4" type="video/mp4">
+                          </video>
+                       
+                        <div>
+                            <div><img src="img/visual2.jpg"></div>
+                            <div><img src="img/visual3.jpg"></div>
+                            <div><img src="img/visual4.jpg"></div>
+                            <div><img src="img/visual5.jpg"></div>
+                        </div>
+                    </div>
+                </section>
+            </article>
+               <!---->
+        </section>
+    </main>
+    <!---->
+    <!--Footer-->
+    <footer>
+        <div>
+            <span>Nuestra Empresa</span>
+            <ul>
+                <li><a href="#">Sobre nosotros</a></li>
+                <li><a href="#">Contactenos</a></li>
+            </ul>
+        </div>
+        <div>
+            <span>Reglamento</span>
+            <ul>
+                <li><a href="#">Condiciones de uso</a></li>
+                <li><a href="#">Aviso Legal</a></li>
+                <li><a href="#">Politica de privacidad</a></li>
+                <li><a href="#">Configurar cookies</a></li>
+            </ul>
+        </div>
+        <div>
+            <span>Ayuda</span>
+            <ul>
+                <li><a href="#">Como apoyar</a></li>
+                <li><a href="#">Tienda</a></li>
+            </ul>
+        </div>
+        <div class="copy">
+            <a href="#">Copyright © 2024 Sitio de Prueba®</a>
+            <div>
+                <a href="#">
+                    <svg fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                        <path
+                            d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                        <path
+                            d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
+                        <path
+                            d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                    </svg></a>
+                <a href="#">
+                    <svg fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script src="./js/script.js"></script>
+    <!---->
+</body>
+
+</html>

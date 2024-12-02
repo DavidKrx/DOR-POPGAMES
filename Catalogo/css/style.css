@@ -20,16 +20,6 @@ section > h1 {
   font-weight: bold;
 }
 
-article {
-  /*Producto*/
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  border-radius: 12px;
-  padding: 5px;
-  align-items: center;
-  border: 0;
-}
 article > span {
   font-size: 1.1rem;
 }

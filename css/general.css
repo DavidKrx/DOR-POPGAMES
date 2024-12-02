@@ -9,18 +9,18 @@
   .diurno {
     --color-bar-primario: #2C6BA3;
     --color-nav-aside: #43a7ff;
-    --color-producto: #43a7ff;
+    --color-producto: #ffffff;
     --color-enfasis:  #ff7900;
-    --color-fondo: #ffffff;
+    --color-fondo: #43a7ff;
     --color-texto:#000000;
   
   }
   .nocturno {
-      --color-bar-primario: rgba(66, 65, 77, 1);
-      --color-nav-aside: rgba(66, 65, 77, 1);
+      --color-bar-primario: #1a1a1a;
+      --color-nav-aside: rgb(43, 42, 51);
       --color-producto: rgba(66, 65, 77, 1);
       --color-enfasis:  #ff7900;
-      --color-fondo: #000000;
+      --color-fondo: rgb(43, 42, 51);
       --color-texto: #ffffff;
   }
   
@@ -161,14 +161,19 @@
     grid-area: main;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     background-color: var(--color-fondo);
   }
-
-  h1, h2 {
-    font-size: 2rem;
-    color: var(--color-enfasis);
+  section {
+    background-color: var(--color-producto);
   }
+  article {
+    /*Juego*/
+    display: flex;
+    flex-direction: column;
+    padding: 0.4rem;
+    align-items: center;
+    width: 100%;
+    height: 100%;}
 
   article button {
     border: 1px solid black;
@@ -182,7 +187,8 @@
   button:hover{
     background-color: rgb(255, 196, 0)
   }
-  
+
+
   footer {
     /*Footer*/
     grid-area: foot;
@@ -228,7 +234,10 @@
     border: 1px;
     border-radius: 12px;
   }
-  
+  span{
+    color: var(--color-texto);
+  }
+
   p {
     font-size: 1rem;
   }
