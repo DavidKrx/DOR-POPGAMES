@@ -95,9 +95,10 @@
     color: var(--color-enfasis);
   }
   
-  header svg {
+  header svg, i{
     width: 2rem;
     height: 2rem;
+    font-size: 2rem;
   }
   
   .headerIcon {
@@ -248,7 +249,7 @@
     color: var(--color-texto);
   }
   
-  .copy svg {
+  .copy svg{
     width: 2rem;
     height: 2rem;
   }
