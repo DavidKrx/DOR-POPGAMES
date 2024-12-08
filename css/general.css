@@ -9,7 +9,7 @@
   --font-size-step: 0.25rem; /* Incrementos de tamaño (4px equivalente en rem) */
   }
   .diurno {
-    --color-bar-primario: #2C6BA3;
+    --color-bar-primario: #1c3065;
     --color-nav-aside: #43a7ff;
     --color-producto: #ffffff;
     --color-enfasis:  #ff7900;
@@ -17,14 +17,14 @@
     --color-texto:#000000;
   }
   .nocturno {
-      --color-bar-primario: #1a1a1a;
+      --color-bar-primario: #141414;
       --color-nav-aside: rgb(43, 42, 51);
       --color-producto: rgba(66, 65, 77, 1);
       --color-enfasis:  #ff7900;
       --color-fondo: rgb(43, 42, 51);
       --color-texto: #ffffff;
   }
-  
+  /*
   .diurno-alto {
     --color-bar-primario: #2C6BA3;
     --color-nav-aside: #ffffff;
@@ -41,7 +41,7 @@
       --color-enfasis:  #ff7900;
       --color-fondo: rgb(43, 42, 51);
       --color-texto: #fff;
-  }
+  }*/
   
   * {
     box-sizing: border-box;
@@ -168,7 +168,8 @@
     grid-area: main;
     display: flex;
     flex-direction: column;
-    background-color: var(--color-fondo);
+    background-color: var(--color-producto);
+    color: var(--color-texto);
   }
   section {
     background-color: var(--color-producto);
@@ -204,7 +205,7 @@
     grid-gap: 1rem;
     padding: 1rem;
     background-color: var(--color-bar-primario);
-    color: var(--color-texto);
+    color: var(--color-enfasis);
     font-family: "Open Sans", sans-serif;
   }
   
@@ -218,10 +219,6 @@
     display: flex;
     flex-direction: column;
   }
-  ul > li {
-    margin: 0.2rem;
-    padding: 0.2rem;
-  }
   ul {
     display: flex;
     flex-wrap: wrap;
@@ -229,6 +226,14 @@
     margin-block: auto;
     list-style-type: none;
   }
+  ul > li {
+    margin: 0.2rem;
+    padding: 0.2rem;
+  }
+  footer div a, footer div span {
+    color: var(--color-enfasis);
+  }
+
   img {
     align-self: center;
     height: 100%;
@@ -263,6 +268,11 @@
     cursor: pointer;
     margin: 0.2rem;
   }
+  span{
+    color: var(--color-texto);
+  }
+
+
   
   /* Estilos para el modo oscuro (dark mode) */
   

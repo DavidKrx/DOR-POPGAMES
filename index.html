@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"  content="Popgames una página que contiene ofertas de video juegos y todo lo último del mercado.">
     <title>Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,14 +32,15 @@
         <div class="headerIcon">
           <button id="aumentar" aria-label="Aumentar tamaño de letra">A+</button>
           <button id="disminuir" aria-label="Disminuir tamaño de letra">A-</button>
-            <button onclick="modo()"><i id="theme" class="fa-solid fa-moon"></i>
+          <button id="restablecer" aria-label="Restablecer tamaño de letra"><i class="fa-solid fa-rotate-right"></i>A</button>
+            <button aria-label="Modo" onclick="modo()"><i id="theme" class="fa-solid fa-moon"></i>
             </button> 
-            <a href="#">                <svg fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+            <a href="#" aria-label="Contactenos">                <svg fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
                     <path
                         d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" />
                 </svg>
             </a>
-            <a href="#">
+            <a href="#" aria-label="Unirse">
                 <svg fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
@@ -92,127 +94,112 @@
     <!---->
     <!--Main-->
     <main>
-              
-      <section aria-label="Nuevos productos">
+ 
+      <div class="highlights">
+        <a href="./Catalogo/index.html">
+          <img alt="Christmas Tree" src="./img/christmas.jpg">
+        </a>
+      </div>
+ 
+      <section aria-label="Estrenos">
+        <h1>Estrenos</h1>    
+        <div class="Estrenos">
+          <article aria-label="Indiana Jones">
+            <div class="highlights">
+              <a href="./Catalogo/Detalles/index.html">
+                <img alt="Indiana Jones Juego" src="./img/indianaJones.jpg">
+              </a>
+            </div>
+            <h2>Indiana jones</h2>
+            <h3 aria-label="precio" class="price">39.99 €</h3>
+            <h4>Rating: 70 %</h4>
+          </article>
           <article>
             <div class="highlights">
               <a href="./Catalogo/Detalles/index.html">
                 <img alt="Indiana Jones Juego Destacado" src="./img/indianaJones.jpg">
               </a>
             </div>
-            <span>Indiana jones</span>
-            <span class="price">39.99 €</span>
-            <span>Rating: 70 %</span>
+            <h2>Indiana jones</h2>
+            <h3 aria-label="precio" class="price">39.99 €</h3>
+            <h4>Rating: 70 %</h4>
           </article>
+          </div>
       </section>
 
       <section aria-label="Reservas">
-        <span>Reservas</span>    
+        <h1>Reservas</h1>    
         <div class="destacados">
-        <article>
-          <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-          <span>Sillent Hill 2</span>
-          <span class="price">39.99 €</span>
-          <span>Rating: 70 %</span>
-        </article>
-        <article>
-          <div><a href="./Catalogo/index.html"><img alt="Super mario"src="./img/supermario.png"></a></div>
-          <span>LotR Return to Moria</span>
-          <span class="price">39.99 €</span>
-          <span>Rating: 70 %</span>
-        </article>
-        <article>
-          <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-          <span>Sillent Hill 2</span>
-          <span class="price">39.99 €</span>
-          <span>Rating: 70 %</span>
-        </article>
-        <article>
-          <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-          <span>LotR Return to Moria</span>
-          <span class="price">39.99 €</span>
-          <span>Rating: 70 %</span>
-        </article>
+          <article>
+            <div>
+              <a href="./Catalogo/index.html"><img alt="Sillent Hill" src="./img/sillenthill.png" /></a>
+            </div>
+            <h2>Sillent Hill</h2>
+            <h3 class="price">39.99 €</h3>
+            <h4>Rating: 70 %</h4>
+          </article>                      
+          <article>
+            <div>
+              <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png" /></a>
+            </div>
+            <h2>Super Mario</h2>
+            <h3 class="price">39.99 €</h3>
+            <h4>Rating: 70 %</h4>
+          </article>                      
+          <article>
+            <div>
+              <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png" /></a>
+            </div>
+            <h2>Super Mario</h2>
+            <h3 class="price">39.99 €</h3>
+            <h4>Rating: 70 %</h4>
+          </article>                      
+          <article>
+            <div>
+              <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png" /></a>
+            </div>
+            <h2>Super Mario</h2>
+            <h3 class="price">39.99 €</h3>
+            <h4>Rating: 70 %</h4>
+          </article>
         </div>
     </section>
 
                   <section aria-label="Novedad">
-                    <span>Novedad</span>
+                    <h1>Novedad</h1>
                     <div class="articulos">
-                    <article>
-                      <div>
-                        <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a>
-                      </div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div>  <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
-                    <article>
-                      <div><a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png"></a></div>
-                      <span>Super Mario</span>
-                      <span class="price">39.99 €</span>
-                      <span>Rating: 70 %</span>
-                    </article>
+                      <article>
+                        <div>
+                          <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png" /></a>
+                        </div>
+                        <h2>Super Mario</h2>
+                        <h3 class="price">39.99 €</h3>
+                        <h4>Rating: 70 %</h4>
+                      </article>
+                      <article>
+                        <div>
+                          <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png" /></a>
+                        </div>
+                        <h2>Super Mario</h2>
+                        <h3 class="price">39.99 €</h3>
+                        <h4>Rating: 70 %</h4>
+                      </article>
+                      <article>
+                        <div>
+                          <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png" /></a>
+                        </div>
+                        <h2>Super Mario</h2>
+                        <h3 class="price">39.99 €</h3>
+                        <h4>Rating: 70 %</h4>
+                      </article>
+                      <article>
+                        <div>
+                          <a href="./Catalogo/index.html"><img alt="Super mario" src="./img/supermario.png" /></a>
+                        </div>
+                        <h2>Super Mario</h2>
+                        <h3 class="price">39.99 €</h3>
+                        <h4>Rating: 70 %</h4>
+                      </article>
                   </div>
                     </section>
     </main>
@@ -243,26 +230,26 @@
             </ul>
         </div>
         <div class="copy">
-            <a href="#">Copyright © 2024 Sitio de Prueba®</a>
+            <a href="#" aria-label="Copyright">Copyright © 2024 Sitio de Prueba®</a>
             <div>
-                <a href="#">
+                <a href="#" aria-label="facebook">
                     <svg fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                         <path
                             d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
                     </svg>
                 </a>
-                <a href="#">
+                <a href="#" aria-label="twitter">
                     <svg fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
                         <path
                             d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334q.002-.211-.006-.422A6.7 6.7 0 0 0 16 3.542a6.7 6.7 0 0 1-1.889.518 3.3 3.3 0 0 0 1.447-1.817 6.5 6.5 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.32 9.32 0 0 1-6.767-3.429 3.29 3.29 0 0 0 1.018 4.382A3.3 3.3 0 0 1 .64 6.575v.045a3.29 3.29 0 0 0 2.632 3.218 3.2 3.2 0 0 1-.865.115 3 3 0 0 1-.614-.057 3.28 3.28 0 0 0 3.067 2.277A6.6 6.6 0 0 1 .78 13.58a6 6 0 0 1-.78-.045A9.34 9.34 0 0 0 5.026 15" />
                     </svg>
                 </a>
-                <a href="#">
+                <a href="#" aria-label="twitter">
                     <svg fill="currentColor" class="bi bi-twitter-x" viewBox="0 0 16 16">
                         <path
                             d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
                     </svg></a>
-                <a href="#">
+                <a href="#" aria-label="github">
                     <svg fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
                         <path
                             d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
@@ -272,9 +259,7 @@
         </div>
     </footer>
     <script src="./js/script.js"></script>
-    <script
-    type="text/javascript"
-    src="https://example.com/fontawesome/v6.6.0/js/conflict-detection.js"
+    <script src="https://example.com/fontawesome/v6.6.0/js/conflict-detection.js"
   ></script>
     <!---->
 </body>

@@ -4,16 +4,14 @@
   grid-template-columns: 1fr 1fr;
   margin: 1rem;
 }
-section{
-  background-color: var(--color-producto);
-}
 section span {
   font-family: "Teko", sans-serif;
   font-size: 1.3rem;
 }
 section > span {
   font-size: 2rem;
-  color: var(--color-enfasis);
+  /* color: var(--color-enfasis);*/
+  color: var(--color-texto);
   font-weight: bold;
 }
 span{

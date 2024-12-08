@@ -22,7 +22,16 @@ function modo() {
 // Al cargar la página, verifica el estado guardado en localStorage
 window.onload = function() {
     let modoGuardado = localStorage.getItem("modo");
-
+    let tamanioGuardado = parseFloat(localStorage.getItem("tamanoLetra"));
+    
+    // Si hay un tamaño guardado en localStorage, lo aplicamos
+    if (tamanioGuardado) {
+        tamanioActual = tamanioGuardado;
+        actualizarTamanio(tamanioActual);
+    } else {
+        // Si no hay valor guardado, usamos el tamaño inicial
+        actualizarTamanio(tamanioInicial);
+    }
     if (modoGuardado === "nocturno") {
         // Si está en modo nocturno, aplica ese estado
         dia.setAttribute("class", "fa-solid fa-sun");
@@ -37,6 +46,7 @@ window.onload = function() {
 // Elementos principales
 const aumentarBtn = document.getElementById('aumentar');
 const disminuirBtn = document.getElementById('disminuir');
+const restablecerBtn = document.getElementById('restablecer');
 // Se puede coger el elemento de otra forma?
 //const header = document.querySelector("header");
 const body = document.body;
@@ -66,6 +76,8 @@ nav.style.fontSize=`${tamanioActual+0.5}rem`;
 nav.style.fontSize=`${tamanioActual+0.35}rem`;
 main.style.fontSize=`${tamanioActual-0.5}rem`;
 //tituloSection.style.fontSize=`${tamanioActual+5}rem`;
+
+localStorage.setItem("tamanoLetra", tamanioActual);
 }
 
 // Eventos para los botones
@@ -77,5 +89,8 @@ disminuirBtn.addEventListener('click', () => {
 actualizarTamanio(tamanioActual - escala);
 });
 
+restablecerBtn.addEventListener('click', () => {
+    actualizarTamanio(tamanioInicial);
+});
 
 

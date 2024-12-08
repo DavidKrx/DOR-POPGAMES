@@ -4,20 +4,15 @@
   grid-template-columns: 1fr 1fr;
   margin: 1rem;
 }
-section{
-  background-color: var(--color-producto);
-}
+
 section span {
   font-family: "Teko", sans-serif;
   /*font-size: 1.3rem;*/
 }
 section > span {
   /*font-size: 2rem;*/
-  color: var(--color-enfasis);
+  /*color: var(--color-enfasis);*/
   font-weight: bold;
-}
-span{
-  color: var(--color-texto);
 }
 
 .textSection {
@@ -37,14 +32,14 @@ align-self: center;
 width: 100%;
 /*font-size: 1.2rem;*/
 font-weight: lighter;
-color: var(--color-texto);
+}
+
+.Estrenos {
+  display: flex;
+  flex-direction: column;
 }
 
 @media screen and (min-width: 576px) {
-  .articulos {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
   .destacados {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -70,5 +65,9 @@ color: var(--color-texto);
   .destacados {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .Estrenos {
+    display: flex;
+    flex-direction: row;
   }
 }
