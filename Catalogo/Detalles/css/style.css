@@ -31,7 +31,6 @@ main > section { /*Secciones del juego*/
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: 1.8rem;
 }
 .acercaDe {
   margin-bottom: 1rem;

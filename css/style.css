@@ -39,6 +39,10 @@ font-weight: lighter;
   flex-direction: column;
 }
 
+.price{
+  font-family: "Croissant One", serif;
+}
+
 @media screen and (min-width: 576px) {
   .destacados {
     display: grid;
