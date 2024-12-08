@@ -1,10 +1,12 @@
 :root {
-    --color-bar-primario: #2C6BA3;
-    --color-nav-aside: #ffffff;
-    --color-producto: #ffffff;
-    --color-enfasis:  #ff7900;
-    --color-fondo: #ffffff;
-    --color-texto:#000000;
+  --color-bar-primario: #2C6BA3;
+  --color-nav-aside: #43a7ff;
+  --color-producto: #ffffff;
+  --color-enfasis:  #ff7900;
+  --color-fondo: #43a7ff;
+  --color-texto:#000000;
+  --font-size-base: 2rem; /* Tamaño base del body */
+  --font-size-step: 0.25rem; /* Incrementos de tamaño (4px equivalente en rem) */
   }
   .diurno {
     --color-bar-primario: #2C6BA3;
@@ -13,7 +15,6 @@
     --color-enfasis:  #ff7900;
     --color-fondo: #43a7ff;
     --color-texto:#000000;
-  
   }
   .nocturno {
       --color-bar-primario: #1a1a1a;
@@ -50,7 +51,6 @@
   
   html {
     /*Degradado de colores a la pagina*/
-    border-radius: 50%;
     overflow-y: auto;
     overflow-x: hidden;
     -webkit-box-sizing: border-box;
@@ -66,6 +66,9 @@
       "asid"
       "main"
       "foot";
+      font-size: var(--font-size-base); /* Tamaño intermedio inicial */
+      line-height: 1.6;
+      font-family: Arial, sans-serif;
   }
   
   header {
@@ -78,20 +81,20 @@
     background-color: var(--color-bar-primario);
     color: var(--color-enfasis);
   }
-  
+  header > div > a {
+    color: var(--color-enfasis);
+  }
+
   header span > a{
     /*Estilos del titulo de la página */
-    font-size: 2.5rem;
+    /*font-size: var(--font-size-base);*/ /*2.5rem*/
+    /*font-size: var(--font-size-base);*/
     font-family: "Danfo", serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
     font-variation-settings:
     "ELSH" 100;
-  }
-  
-  header a {
-    font-size: 1rem;
     color: var(--color-enfasis);
   }
   
@@ -99,6 +102,11 @@
     width: 2rem;
     height: 2rem;
     font-size: 2rem;
+  }
+
+  header button {
+    width: 3rem;
+    height: 3rem;
   }
   
   .headerIcon {
@@ -111,14 +119,6 @@
     flex-direction: column-reverse;
     align-items: center;
   }
-  /*Option diurno y nocturno*/
-  select{
-    padding: 0.5rem;
-    border: 1px;
-    font-size: 1.5rem;
-    background:  var(--color-bar-primario);
-    color:  var(--color-enfasis);
-    }
 
   nav {
     /*Barra de navegacion de plataformas de juegos*/
@@ -135,9 +135,7 @@
     justify-content: center;
     flex-wrap: wrap;
   }
-  nav a {
-    font-size: 1.5rem;
-  }
+
   
   aside {
     /*Aside*/
@@ -146,9 +144,17 @@
     background-color: var(--color-nav-aside);
     color: var(--color-texto);
   }
-  
+  aside span {
+    /*Encabezados del footer y del aside*/
+    /*font-size: 1.5rem;*/
+    /*font-size: var(--font-size-base);*/ /*1.5rem*/
+    font-weight: bold;
+  }
+  nav a {
+    /*font-size: var(--font-size-base);*/ /*2rem*/
+  }
   aside a {
-    font-size: 1.4rem;
+    /*font-size: var(--font-size-base);*/ /*1.4rem*/
   }
   
   nav,
@@ -180,11 +186,11 @@
     border: 1px solid black;
     border-radius: 12px;
     background-color: var(--color-enfasis);
-  }
-  article button a {
+    cursor: pointer;
     margin: 0.2rem;
     font-size: 1.8rem;
   }
+
   button:hover{
     background-color: rgb(255, 196, 0)
   }
@@ -202,14 +208,9 @@
     font-family: "Open Sans", sans-serif;
   }
   
-  aside span {
-    /*Encabezados del footer y del aside*/
-    font-size: 1.45rem;
-    font-weight: bold;
-  }
+
   footer span {
     /*Encabezados del footer y del aside*/
-    font-size: 1.05rem;
     font-weight: bold;
   }
   
@@ -240,11 +241,11 @@
   }
 
   p {
-    font-size: 1rem;
+    /*font-size: 1rem;*/
   }
   a {
     text-decoration: none;
-    font-size: 1rem;
+    /*font-size: 1rem;*/
     justify-content: center;
     color: var(--color-texto);
   }
@@ -256,30 +257,33 @@
   
   button {
     margin: 0.5rem;
-    border: 1px;
+    border: 1px solid black;
     border-radius: 12px;
+    background-color: var(--color-enfasis);
+    cursor: pointer;
+    margin: 0.2rem;
   }
   
   /* Estilos para el modo oscuro (dark mode) */
   
   @media (prefers-color-scheme: dark) {
-    :root {
-      --color-bar-primario: rgba(66, 65, 77, 1);
+    .nocturno {
+      --color-bar-primario: #1a1a1a;
+      --color-nav-aside: rgb(43, 42, 51);
       --color-producto: rgba(66, 65, 77, 1);
-      --color-nav-aside: rgba(66, 65, 77, 1);
       --color-enfasis:  #ff7900;
       --color-fondo: rgb(43, 42, 51);
-      --color-texto: #fff;
-    }
+      --color-texto: #ffffff;
+  }
   }
   
   @media (prefers-color-scheme: light) {
     :root {
       --color-bar-primario: #2C6BA3;
-      --color-producto: #fff;
-      --color-nav-aside: #fff;
+      --color-nav-aside: #43a7ff;
+      --color-producto: #ffffff;
       --color-enfasis:  #ff7900;
-      --color-fondo: #fff;
+      --color-fondo: #43a7ff;
       --color-texto:#000000;
   }
   }

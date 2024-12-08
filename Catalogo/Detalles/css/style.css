@@ -62,7 +62,7 @@ article button {
   border-radius: 12px;
   background-color: var(--color-enfasis);
 }
-article button a {
+article button {
   margin: 0.2rem;
   font-size: 1.8rem;
 }

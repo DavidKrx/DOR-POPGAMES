@@ -1,0 +1,28 @@
+:root {
+    font-size: 1rem;
+    --font-size-base: 1rem; /* Tamaño base del body */
+    --font-size-step: 0.125rem; /* Incrementos de tamaño (2px equivalente en rem) */
+  }
+  
+  /* Estilo base */
+  body {
+    font-size: var(--font-size-base); /* Tamaño intermedio inicial */
+    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  /* Botones */
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
