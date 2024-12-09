@@ -24,24 +24,6 @@
       --color-fondo: rgb(43, 42, 51);
       --color-texto: #ffffff;
   }
-  /*
-  .diurno-alto {
-    --color-bar-primario: #2C6BA3;
-    --color-nav-aside: #ffffff;
-    --color-producto: #ffffff;
-    --color-enfasis:  #ff7900;
-    --color-fondo: #ffffff;
-    --color-texto:#000000;
-  }
-  
-  .nocturno-alto {
-      --color-bar-primario: #000000;
-      --color-nav-aside: #000000;
-      --color-producto: rgba(66, 65, 77, 1);
-      --color-enfasis:  #ff7900;
-      --color-fondo: rgb(43, 42, 51);
-      --color-texto: #fff;
-  }*/
   
   * {
     box-sizing: border-box;
@@ -86,9 +68,6 @@
   }
 
   header span > a{
-    /*Estilos del titulo de la página */
-    /*font-size: var(--font-size-base);*/ /*2.5rem*/
-    /*font-size: var(--font-size-base);*/
     font-family: "Danfo", serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -146,15 +125,7 @@
   }
   aside span {
     /*Encabezados del footer y del aside*/
-    /*font-size: 1.5rem;*/
-    /*font-size: var(--font-size-base);*/ /*1.5rem*/
     font-weight: bold;
-  }
-  nav a {
-    /*font-size: var(--font-size-base);*/ /*2rem*/
-  }
-  aside a {
-    /*font-size: var(--font-size-base);*/ /*1.4rem*/
   }
   
   nav,
@@ -195,7 +166,6 @@
   button:hover{
     background-color: rgb(255, 196, 0)
   }
-
 
   footer {
     /*Footer*/
@@ -245,12 +215,8 @@
     color: var(--color-texto);
   }
 
-  p {
-    /*font-size: 1rem;*/
-  }
   a {
     text-decoration: none;
-    /*font-size: 1rem;*/
     justify-content: center;
     color: var(--color-texto);
   }
@@ -272,8 +238,6 @@
     color: var(--color-texto);
   }
 
-
-  
   /* Estilos para el modo oscuro (dark mode) */
   
   @media (prefers-color-scheme: dark) {

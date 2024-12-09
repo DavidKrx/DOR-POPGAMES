@@ -80,13 +80,16 @@ main.style.fontSize=`${tamanioActual-0.5}rem`;
 localStorage.setItem("tamanoLetra", tamanioActual);
 }
 
-// Eventos para los botones
 aumentarBtn.addEventListener('click', () => {
-actualizarTamanio(tamanioActual + escala);
+    if (tamanioActual<=2.25){
+        actualizarTamanio(tamanioActual + escala);
+    }
 });
 
 disminuirBtn.addEventListener('click', () => {
-actualizarTamanio(tamanioActual - escala);
+    if (tamanioActual>=1.75){
+        actualizarTamanio(tamanioActual - escala);
+    }
 });
 
 restablecerBtn.addEventListener('click', () => {

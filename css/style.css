@@ -4,14 +4,10 @@
   grid-template-columns: 1fr 1fr;
   margin: 1rem;
 }
-
 section span {
   font-family: "Teko", sans-serif;
-  /*font-size: 1.3rem;*/
 }
 section > span {
-  /*font-size: 2rem;*/
-  /*color: var(--color-enfasis);*/
   font-weight: bold;
 }
 
@@ -30,7 +26,6 @@ justify-content: center;
 align-items: center;
 align-self: center;
 width: 100%;
-/*font-size: 1.2rem;*/
 font-weight: lighter;
 }
 
@@ -40,7 +35,14 @@ font-weight: lighter;
 }
 
 .price{
-  font-family: "Croissant One", serif;
+  font-family: 'Personalizada', serif;
+}
+
+@font-face {
+  font-family: 'Personalizada';
+  src: url('./fonts/Black_Ops_One/BlackOpsOne-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @media screen and (min-width: 576px) {
