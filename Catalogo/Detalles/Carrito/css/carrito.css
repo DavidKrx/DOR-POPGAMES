@@ -1,0 +1,77 @@
+    body {
+      /*Grip para la estructura de la página*/
+      display: grid;
+      grid-template-areas:
+        "head"
+        "nava"
+        "main"
+        "foot";
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+    .etapas li{
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      align-items: center;
+    }
+    .etapas .etapa {
+      border: 2px solid black;
+      border-radius: 50%;
+      width: 4rem;
+      height: 4rem;
+      color: var(--color-texto);
+      justify-content: center;
+      align-items: center;
+      background-color: var(--color-producto);
+    }
+
+    nav svg {
+      height: 100%;
+    } 
+    /* Tablets y phablets  2 */
+  @media screen and (min-width: 576px) {
+    body {
+        /*Grip para la estructura de la página*/
+        display: grid;
+        grid-template-areas:
+          "head"
+          "nava"
+          "main"
+          "foot";
+      }
+  }
+  
+  /* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+  @media screen and (min-width: 912px),
+    (min-width: 576px) and (orientation: landscape) {
+        body {
+            /*Grip para la estructura de la página*/
+            display: grid;
+            grid-template-areas:
+              "head"
+              "nava"
+              "main"
+              "foot";
+          }
+  }
+  
+  /* Escritorio grande */
+  @media screen and (min-width: 1024px) {
+    body {
+        /*Grip para la estructura de la página*/
+        display: grid;
+        grid-template-areas:
+          "head"
+          "nava"
+          "main"
+          "foot";
+      }
+  }
+  
+
+   

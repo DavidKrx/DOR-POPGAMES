@@ -1,0 +1,86 @@
+/* Hasta aqui*/
+section {
+  /*Contenedor de articulos*/
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  border: 1px solid black;
+  border-radius: 12px;
+  color: var(--color-texto);
+  background-color: var(--color-producto);
+}
+
+main > section { /*Secciones del juego*/
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+article{ 
+  align-items: start;
+}
+article .juego{
+    display: grid;
+    grid-template-columns:0.5fr 1.5fr; 
+}
+.articleConten {
+  display: flex;
+  flex-direction: column;
+}
+
+.cesta {/*Contenido principal del juego*/
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+#realizandoProceso {
+  background-color: var(--color-enfasis);
+}
+.etapaEnProceso{
+  color: var(--color-enfasis);
+  font-style: bold;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  border: 1px solid black;
+  border-radius: 12px;
+  background-color: var(--color-enfasis);
+  margin: 0.2rem;
+  font-size: 1.8rem;
+}
+
+.price {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+}
+
+/* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+@media screen and (min-width: 912px),
+  (min-width: 576px) and (orientation: landscape) {
+    main > section { /*Secciones del juego*/
+      display: grid;
+      grid-template-columns:3fr 1fr; 
+    }
+}
+
+/* Escritorio grande */
+@media screen and (min-width: 1024px) {
+  article{ 
+    display: grid;
+    grid-template-columns:2fr 1fr; 
+  }
+}
