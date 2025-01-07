@@ -8,12 +8,13 @@
         .input-group {
             margin-bottom: 10px;
         }
-        .error-message {
+        .error{
             color: red;
-            font-size: 12px;
-            display: none;
         }
-
+        .volverEnviar{
+            display: flex;
+            flex-direction: column;
+        }
 
 @media screen and (min-width: 576px) {
 
