@@ -52,6 +52,10 @@
         <button aria-label="Modo" onclick="modo()">
           <i id="theme" class="fa-solid fa-moon"></i>
         </button>
+        <a class="buttonCarrito" href="./Detalles/Carrito/index.html" aria-label="carrito">  
+          <svg viewBox="0 0 576 512">
+            <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+        </a> 
         <a href="#" aria-label="Contactenos">
           <svg fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
             <path
@@ -102,72 +106,197 @@
     <main>
       <section>
         <!--Contenido de la cesta-->
-        <div class="cesta">
+        <div class="cesta" id="carrito">
           <h1>Mi cesta</h1>
-          <article>
+          <article class="artic" id="super">
             <div class="juego">
+                <input type="checkbox" id="game1" value="Super Mario" class="input" checked>
               <div>
                 <img alt="PNG" src="./img/supermario.png"/>
               </div>
               <div class="articleConten">
-              <h2>Super Mario</h2>
-              <span class="price">39.99 €</span>
+              <h2 aria-label="nombre" class="name">Super Mario</h2>
+              <div><span aria-label="precio" class="price">39.99</span><span> €</span></div>
               <span>Recíbelo entre el miércoles 1 y el jueves 2 de enero</span>
               </div>
             </div>
             <div class="actions">
-              <button aria-label="borrar" onclick="borrar()">
+              <div>              
+                <button aria-label="borrar" onclick="borrar('supermario')">
                 <i class="fa-solid fa-trash"></i>
               </button>
+            </div>
               <div class="unidades">
-                <button aria-label="restarUnidad" onclick="restar()">
+                <button aria-label="restarUnidad" onclick="decrementar('supermario')">
                   <i class="fa-solid fa-minus"></i>
                 </button>
-                <input aria-label="unidadesDelProducto" value="1">
-                <button aria-label="sumarUnidad" onclick="sumar()">
+                <input type="number" aria-label="unidadesDelProducto" class="input cantidad" id="supermario" min="1" max="200" value="1" >
+                <button aria-label="sumarUnidad"  onclick="incrementar('supermario')">
                   <i class="fa-solid fa-plus"></i>
                 </button>
               </div>
             </div>
           </article>
 
-          <article>
+          <article class="artic" id="meta">
             <div class="juego">
+              <input type="checkbox" id="game2" value="Metaphor" class="input" checked>
               <div>
-                <img alt="PNG" src="./img/supermario.png"/>
+                <img alt="PNG" src="./img/metaph.png"/>
               </div>
               <div class="articleConten">
-              <h2>Super Mario</h2>
-              <span class="price">39.99 €</span>
-              <span>Recíbelo entre el miércoles 1 y el jueves 2 de enero</span>
+              <h2 aria-label="nombre" class="name">Metaphor</h2>
+              <div>
+                <span aria-label="precio" class="price">60.00</span><span> €</span>
+              </div>
+              
+              <span>Recíbelo entre el miércoles 1 y el jueves 2 de febrero</span>
               </div>
             </div>
             <div class="actions">
-              <button aria-label="borrar" onclick="borrar()">
+              <button aria-label="borrar" class="action" onclick="borrar('meta')">
                 <i class="fa-solid fa-trash"></i>
               </button>
               <div class="unidades">
-                <button aria-label="restarUnidad" onclick="restar()">
+                <button aria-label="restarUnidad" class="action" onclick="decrementar('metaph')">
                   <i class="fa-solid fa-minus"></i>
                 </button>
-                <input aria-label="unidadesDelProducto" value="1">
-                <button aria-label="sumarUnidad" onclick="sumar()">
+                <input type="number" aria-label="unidadesDelProducto" class="input cantidad" id="metaph" min="1" max="200" value="1">
+                <button aria-label="sumarUnidad" class="action" onclick="incrementar('metaph')">
                   <i class="fa-solid fa-plus"></i>
                 </button>
               </div>
             </div>
           </article>
-        
+
+          <article class="artic" id="dragon">
+            <div class="juego">
+              <input type="checkbox" id="game3" value="dragonball" class="input" checked>
+              <div>
+                <img alt="PNG" src="./img/dragonball.png"/>
+              </div>
+              <div class="articleConten">
+              <h2 aria-label="nombre" class="name">Dragonball</h2>
+              <div>
+                <span aria-label="precio" class="price">79.99</span><span> €</span>
+              </div>
+              
+              <span>Recíbelo entre el miércoles 1 y el jueves 2 de febrero</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button aria-label="borrar" class="action" onclick="borrar('dragon')">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              <div class="unidades">
+                <button aria-label="restarUnidad" class="action" onclick="decrementar('dragonball')">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <input type="number" aria-label="unidadesDelProducto" class="input cantidad" id="dragonball" min="1" max="200" value="1">
+                <button aria-label="sumarUnidad" class="action" onclick="incrementar('dragonball')">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="artic" id="sillent">
+            <div class="juego">
+              <input type="checkbox" id="game4" value="sillenthill" class="input" checked>
+              <div>
+                <img alt="PNG" src="./img/sillenthill.png"/>
+              </div>
+              <div class="articleConten">
+              <h2 aria-label="nombre" class="name">Sillent Hill 2</h2>
+              <div>
+                <span class="price" aria-label="precio">39.99</span><span> €</span>
+              </div>
+              
+              <span>Recíbelo entre el miércoles 1 y el jueves 2 de febrero</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button aria-label="borrar" class="action" onclick="borrar('sillent')">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              <div class="unidades">
+                <button aria-label="restarUnidad" class="action" onclick="decrementar('sillenthill')">
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <input type="number" aria-label="unidadesDelProducto" class="input cantidad" id="sillenthill" min="1" max="200" value="1">
+                <button aria-label="sumarUnidad" class="action" onclick="incrementar('sillenthill')">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article id="neva" class="desabilitado">
+            <div class="juego">
+              <input type="checkbox">
+              <div>
+                <img alt="PNG" src="./img/neva.png"/>
+              </div>
+              <div class="articleConten">
+              <h2>Neva</h2>
+              <span>Fuera de Stock</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button aria-label="borrar">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              <div class="unidades">
+                <button aria-label="restarUnidad"disabled>
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <input type="number" aria-label="unidadesDelProducto" class="input cantidad" min="1" max="200" value="1">
+                <button aria-label="sumarUnidad">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+          </article>
         </div>
           <!--Precio de la Cesta-->
-        <div>
+        <div class="resumen">
           <h1>Resumen</h1>
-          <div>  <span>Subtotal articulos</span> <span class="total">1780€</span></div>
-          <div>  <span>Total(impuestos incluidos)</span> <span class="total">1780€</span></div>
-          <a class="button" aria-label="realizarPedido"
-          >Realizar Pedido</a>
+          <div>
+            <span id="subtotal">Subtotal: 219.97 €</span>
+            <span id="IGIC">IGIC (7%): 15.40 €</span>
+            <span id="total">Total: 235.37 €</span>
+          
+          </div>
+
+          <button id="pedir" class="button" aria-label="realizarPedido" onclick="realizarPedido()">Realizar Pedido</button>
         </div>
       </section>
+
+      <section aria-label="Recomendados" class="recomendadosSec">
+        <h1>Recomendados</h1>    
+        <div class="recomendados">
+          <article id="space">
+            <div>
+              <button onclick="agregarCarrito()"><img alt="Space marine" src="./img/spacemarine.png"/></button>
+            </div>
+            <h2>Space Marine</h2>
+            <div>
+              <span class="price">24.99</span><span> €</span>
+            </div>
+            <span>Rating: 70 %</span>
+          </article>
+          <article id="space">
+            <div>
+              <button onclick="agregarCarrito()"><img alt="Space marine" src="./img/spacemarine.png"/></button>
+            </div>
+            <h2>Space Marine</h2>
+            <div>
+              <span class="price">24.99</span><span> €</span>
+            </div>
+            <span>Rating: 70 %</span>
+          </article>                     
+        </div>
+    </section>
 
       <!---->
     </main>
@@ -222,8 +351,9 @@
             >
               <path
                 d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"
-              /></svg
-          ></a>
+              />
+              </svg>
+            </a>
           <a href="#" aria-label="github">
             <svg fill="currentColor" class="bi bi-github" viewBox="0 0 16 16">
               <path

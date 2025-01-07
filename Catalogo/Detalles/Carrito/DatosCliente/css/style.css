@@ -1,0 +1,72 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 3rem;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+fieldset > div {
+    display: flex;
+    flex-direction: column;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.fact {
+    display: flex;
+    flex-direction: row;
+}
+.fact input {
+    margin-left: 1rem;
+}
+
+.hidden { display: none; }
+.error { color: red; }
+.step {
+    padding: 5px 20px;
+    margin: 10px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.active-step {
+    background-color: #4CAF50;
+    color: white;
+}
+.step-container {
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width: 576px) {
+
+}
+
+/* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+@media screen and (min-width: 912px),
+  (min-width: 576px) and (orientation: landscape) {
+    fieldset {
+        display: flex;
+        flex-direction: row;
+    }  
+}
+
+/* Escritorio grande */
+@media screen and (min-width: 1024px) {
+
+}

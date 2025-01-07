@@ -1,5 +1,5 @@
 :root {
-  --color-bar-primario: #2C6BA3;
+  --color-bar-primario: #1c3065;
   --color-nav-aside: #43a7ff;
   --color-producto: #ffffff;
   --color-enfasis:  #ff7900;
@@ -83,7 +83,7 @@
     font-size: 2rem;
   }
 
-  header button {
+  header button, .buttonCarrito{
     width: 3rem;
     height: 3rem;
   }
@@ -163,7 +163,7 @@
     font-size: 1.8rem;
   }
 
-  button:hover{
+  button:hover, .button:hover{
     background-color: rgb(255, 196, 0)
   }
 
@@ -226,7 +226,7 @@
     height: 2rem;
   }
   
-  button {
+  button, .buttonCarrito{
     margin: 0.5rem;
     border: 1px solid black;
     border-radius: 12px;
@@ -238,29 +238,12 @@
     color: var(--color-texto);
   }
 
+  .button {
+    color: #000000;
+  }
+
   /* Estilos para el modo oscuro (dark mode) */
-  
-  @media (prefers-color-scheme: dark) {
-    .nocturno {
-      --color-bar-primario: #1a1a1a;
-      --color-nav-aside: rgb(43, 42, 51);
-      --color-producto: rgba(66, 65, 77, 1);
-      --color-enfasis:  #ff7900;
-      --color-fondo: rgb(43, 42, 51);
-      --color-texto: #ffffff;
-  }
-  }
-  
-  @media (prefers-color-scheme: light) {
-    :root {
-      --color-bar-primario: #2C6BA3;
-      --color-nav-aside: #43a7ff;
-      --color-producto: #ffffff;
-      --color-enfasis:  #ff7900;
-      --color-fondo: #43a7ff;
-      --color-texto:#000000;
-  }
-  }
+
   
   /* Tablets y phablets  2 */
   @media screen and (min-width: 576px) {

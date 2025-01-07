@@ -7,6 +7,10 @@
         "main"
         "foot";
     }
+    main {
+      color: var(--color-texto);
+      background-color: var(--color-producto);
+    }
 
     nav ul {
       display: flex;
@@ -30,9 +34,23 @@
       background-color: var(--color-producto);
     }
 
+    .etapaEnProceso{
+      font-style: bold;
+    }
+
+    input:checked {
+      color: var(--color-enfasis);
+    }
+
     nav svg {
       height: 100%;
     } 
+
+    #realizandoProceso {
+      background-color: var(--color-enfasis);
+    }
+
+
     /* Tablets y phablets  2 */
   @media screen and (min-width: 576px) {
     body {
