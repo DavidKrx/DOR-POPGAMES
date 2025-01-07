@@ -121,13 +121,6 @@ input[type=number]::-webkit-outer-spin-button {
       grid-template-columns: 1fr 1fr;
     }
 
-    .resumen {
-      display: flex;
-      float: right;
-      right: 1rem;
-      flex-direction: column;
-      position:fixed;
-    }
 }
 
 /* Escritorio grande */
@@ -138,6 +131,12 @@ input[type=number]::-webkit-outer-spin-button {
   .recomendados {
     display: flex;
     flex-direction: row;
+  }
+
+  .resumen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
 }

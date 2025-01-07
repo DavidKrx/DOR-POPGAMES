@@ -22,8 +22,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../../../css/general.css" />
-    <link rel="stylesheet" href="../css/carrito.css" />
+    <link rel="stylesheet" href="../../../../../css/general.css" />
+    <link rel="stylesheet" href="../../css/carrito.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
 
@@ -90,12 +90,12 @@
           <div><span>Carrito</span></div>
         </li>
         <li>
-            <div class="etapa" id="realizandoProceso"><span>2</span></div>
-            <div><span class="etapaEnProceso">Datos del cliente</span></div>
+            <div class="etapa"><span>2</span></div>
+            <div><span>Datos del cliente</span></div>
         </li>
         <li>
-            <div class="etapa"><span>3</span></div>
-            <div><span>Descuentos y sistemas de pago</span></div>   
+            <div class="etapa" id="realizandoProceso"><span>3</span></div>
+            <div><span class="etapaEnProceso">Descuentos y sistemas de pago</span></div>   
         </li>
         <li>
             <div class="etapa"><span>4</span></div>
@@ -106,77 +106,7 @@
     <main>
       <h1>Datos del cliente</h1>
       <form id="form" onsubmit="return validateForm()">
-        <!-- Datos Personales -->
-        <div class="category" id="personalData">
-            <h2>Datos Personales</h2>
-            <div class="input-group">
-                <label for="fullName">Nombre Completo:</label>
-                <input type="text" id="fullName" name="fullName" pattern="[A-Za-z]+" minlength="4" maxlength="20" required>
-            </div>
-            <div class="input-group">
-                <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-        </div>
-    
-        <!-- Datos de Envío -->
-        <div class="category" id="shippingData">
-            <h2>Datos de Envío</h2>
-            <div class="input-group">
-              <label for="shippingPostalcod">Codigo Postal:</label>
-              <input id="shippingPostalcod" name="shippingPostalcod" type="text" pattern="^38[0-9]{3}$" placeholder="38XXX" maxlength="5" required>
-          </div>
-            <div class="input-group">
-                <label for="shippingAddress">Dirección de Envío:</label>
-                <input type="text" id="shippingAddress" name="shippingAddress" size="30" required>
-            </div>
-        </div>
-    
-        <!-- Datos de Facturación -->
-        <div class="category" id="billingData">
-            <h2>Datos de Facturación</h2>
-            <div class="input-group">
-                <input type="checkbox" id="sameAsShipping" name="sameAsShipping" onclick="toggleBillingData()"> 
-                <label for="sameAsShipping">Mis datos de facturación son los mismos que los de envío</label>
-            </div>
-            <div class="input-group">
-              <label for="codP">Codigo Postal de Facturación:</label>
-              <input id="billingPostalcod" name="billingPostalcod" type="text" pattern="^38[0-9]{3}$" placeholder="38XXX" maxlength="5" required>
-          </div>
-            <div class="input-group">
-                <label for="billingAddress">Dirección de Facturación:</label>
-                <input type="text" id="billingAddress" name="billingAddress" size="30" required>
-            </div>
-        </div>
-    
-        <!-- Datos de Contacto -->
-        <div class="category" id="contactData">
-            <h2>Datos de Contacto</h2>
-            <div class="input-group">
-                <label for="phoneNumber">Teléfono de Contacto:</label>
-                <input type="text" id="phoneNumber" name="phoneNumber" required>
-            </div>
-        </div>
-    
-        <!-- Zona de Envío -->
-        <div class="category" id="shippingZone">
-            <h2>Zona de Envío</h2>
-            <div class="input-group">
-                <label for="zone">Selecciona tu zona de envío:</label>
-                <select id="zone" name="zone" onchange="updateShippingMethods()" required>
-                    <option value="">Seleccionar...</option>
-                    <option value="zona1">Zona 1 (Métodos: Estándar, Exprés)</option>
-                    <option value="zona2">Zona 2 (Método: Económico)</option>
-                    <option value="zona3">Zona 3 (No servida)</option>
-                </select>
-            </div>
-            <div class="input-group hidden" id="methods">
-                <label for="shippingMethod">Selecciona un método de envío:</label>
-                <select id="shippingMethod" name="shippingMethod" required>
-                    <option value="">Seleccionar...</option>
-                </select>
-            </div>
-        </div>
+
     
         <!-- Botón para Enviar -->
         <div class="input-group">
@@ -250,7 +180,7 @@
         </div>
       </div>
     </footer>
-    <script src="../../../../js/script.js"></script>
+    <script src="../../../../../js/script.js"></script>
     <!---->
   </body>
 </html>

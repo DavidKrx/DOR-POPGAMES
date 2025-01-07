@@ -384,71 +384,71 @@ function realizarPedido() {
 
 
 //DATOS DEL CLIENTE
+const shippingPrices = {
+  zona1: { 'Estándar': 5, 'Exprés': 10 },
+  zona2: { 'Económico': 3 },
+  zona3: { 'No Servida': 0 }
+};
 
-function nextStep() {
-        if (!validateStep()) return;
+function toggleBillingData() {
+  const isChecked = document.getElementById('sameAsShipping').checked;
+  document.getElementById('billingAddress').disabled = isChecked;
+  document.getElementById('billingPostalcod').disabled = isChecked;
 }
 
-function validateStep() {
-    const name = document.getElementById('fullName').value;
-    const email = document.getElementById('email').value;
-    const address = document.getElementById('address').value;
-    const phone = document.getElementById('phone').value;
+function updateShippingMethods() {
+  const zone = document.getElementById('zone').value;
+  const methodsSelect = document.getElementById('shippingMethod');
+  const methodsDiv = document.getElementById('methods');
 
-    const zone = document.getElementById('shippingZone').value;
-    const method = document.getElementById('shippingMethod').value;
+  // Limpiar métodos de envío
+  methodsSelect.innerHTML = '<option value="">Seleccionar...</option>';
 
-    let valid = true;
-    if (!name) {
-        document.getElementById('nameError').innerText = 'Nombre es obligatorio';
-        valid = false;
-    } else {
-        document.getElementById('nameError').innerText = '';
-    }
+  if (zone === 'zona1') {
+      methodsSelect.innerHTML += `<option value="Estándar">Estándar - $5</option>
+                                   <option value="Exprés">Exprés - $10</option>`;
+  } else if (zone === 'zona2') {
+      methodsSelect.innerHTML += `<option value="Económico">Económico - $3</option>`;
+  } else if (zone === 'zona3') {
+      methodsSelect.innerHTML += `<option value="No Servida">No Servida</option>`;
+  }
 
-    if (!email) {
-        document.getElementById('emailError').innerText = 'Correo electrónico es obligatorio';
-        valid = false;
-    } else {
-        document.getElementById('emailError').innerText = '';
-    }
-
-    if (!address) {
-        document.getElementById('addressError').innerText = 'Dirección de envío es obligatoria';
-        valid = false;
-    } else {
-        document.getElementById('addressError').innerText = '';
-    }
-
-    if (!phone) {
-        document.getElementById('phoneError').innerText = 'Teléfono es obligatorio';
-        valid = false;
-    } else {
-        document.getElementById('phoneError').innerText = '';
-    }
-
-    if (!zone) {
-        document.getElementById('shippingZoneError').innerText = 'Debes seleccionar una zona';
-        valid = false;
-    } else {
-        document.getElementById('shippingZoneError').innerText = '';
-    }
-
-    if (!method) {
-        document.getElementById('shippingMethodError').innerText = 'Debes seleccionar un método de envío';
-        valid = false;
-    } else {
-        document.getElementById('shippingMethodError').innerText = '';
-    }
-
-    if (zone === 'zona3') {
-        valid = false;
-        alert('La zona seleccionada no está disponible para envío');
-    }
+  methodsDiv.classList.remove('hidden');
 }
 
-function toggleBilling() {
-    const isChecked = document.getElementById('sameAsShipping').checked;
-    document.getElementById('billingFields').style.display = isChecked ? 'none' : 'block';
-    document.getElementById('billingAddress').disabled = isChecked;
+function validateForm() {
+  const fullName = document.getElementById('fullName').value;
+  const email = document.getElementById('email').value;
+  const shippingAddress = document.getElementById('shippingAddress').value;
+  const shippingPostalcod = document.getElementById('shippingPostalcod').value;
+  const phoneNumber = document.getElementById('phoneNumber').value;
+  const zone = document.getElementById('zone').value;
+  const method = document.getElementById('shippingMethod').value;
+
+  if (!fullName || !email || !shippingAddress || !shippingPostalcod || !phoneNumber || !zone || !method) {
+      alert("Por favor completa todos los campos obligatorios.");
+      return false;
+  }else{
+    saveData();
+  }
+}
+
+
+function saveData() {
+  const formData = {
+      fullName: document.getElementById('fullName').value,
+      email: document.getElementById('email').value,
+      shippingAddress: document.getElementById('shippingAddress').value,
+      shippingPostalcod: document.getElementById('shippingPostalcod').value,
+      billingAddress: document.getElementById('billingAddress').value,
+      billingPostalcod: document.getElementById('billingPostalcod').value,
+      phoneNumber: document.getElementById('phoneNumber').value,
+      zone: document.getElementById('zone').value,
+      shippingMethod: document.getElementById('shippingMethod').value,
+      sameAsShipping: document.getElementById('sameAsShipping').checked,
+      method: document.getElementById('shippingMethod').value
+  };
+  // Guardamos el objeto como JSON en el localStorage
+  localStorage.setItem('formData', JSON.stringify(formData));
+  window.location.href = 'SistemasPago/index.html'; 
 }
