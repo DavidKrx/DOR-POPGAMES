@@ -517,3 +517,79 @@ function saveData() {
   localStorage.setItem('formData', JSON.stringify(formData));
   window.location.href = 'SistemasPago/index.html';
 }
+
+//
+//SISTEMA DE PAGO
+//
+document.getElementById('paymentMethod').addEventListener('change', function () {
+  const paymentMethod = this.value;
+  document.getElementById('cardDetails').style.display = paymentMethod === 'card' ? 'block' : 'none';
+  document.getElementById('paypalDetails').style.display = paymentMethod === 'paypal' ? 'block' : 'none';
+  document.getElementById('bankTransferDetails').style.display = paymentMethod === 'bankTransfer' ? 'block' : 'none';
+});
+
+document.getElementById('discountCode').addEventListener('input', function () {
+  const discountCode = this.value;
+  const discountMessage = document.getElementById('discountMessage');
+  const precioCarritoDescuento=document.getElementById('precioCarritoDescuento');
+
+  if (discountCode === 'DESCUENTO10') {
+      discountMessage.textContent = 'Código válido. Descuento: 10%';
+      precioCarritoDescuento.textContent='Precio total carrito: 162.00€'
+      // Aquí podrías actualizar el total del carrito
+  } else if (discountCode === 'DESCUENTO20') {
+      discountMessage.textContent = 'Código válido. Descuento: 20%';
+      // Actualizar el total del carrito
+  } else {
+      discountMessage.textContent = 'Código no válido';
+  }
+});
+
+document.getElementById('paymentForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  
+  // Validación de campos obligatorios
+  let isValid = true;
+  const paymentMethod = document.getElementById('paymentMethod').value;
+  const cardNumber = document.getElementById('cardNumber').value;
+  const cvc = document.getElementById('cvc').value;
+  const expiryDate = document.getElementById('expiryDate').value;
+  const paypalEmail = document.getElementById('paypalEmail').value;
+  const bankTransferFile = document.getElementById('bankTransferFile').files.length;
+
+  // Verificación de método de pago
+  if (paymentMethod === 'card') {
+      if (!/^\d{16}$/.test(cardNumber)) {
+          document.getElementById('cardMessage').textContent = 'El número de tarjeta debe tener 16 dígitos';
+          isValid = false;
+      }
+      if (!/^\d{3}$/.test(cvc)) {
+          document.getElementById('cardMessage').textContent = 'El CVC debe tener 3 dígitos';
+          isValid = false;
+      }
+      if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+          document.getElementById('cardMessage').textContent = 'La fecha de caducidad debe estar en formato MM/AA';
+          isValid = false;
+      }
+  } else if (paymentMethod === 'paypal') {
+      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(paypalEmail)) {
+          document.getElementById('paypalMessage').textContent = 'El correo electrónico no es válido';
+          isValid = false;
+      }
+  } else if (paymentMethod === 'bankTransfer') {
+      if (bankTransferFile === 0) {
+          document.getElementById('bankTransferMessage').textContent = 'Debes subir un archivo PDF como justificante';
+          isValid = false;
+      }
+  }
+
+  // Si todo es válido, enviar el formulario
+  if (isValid) {
+      document.getElementById('paymentForm').submit();
+
+      //Falta trael el precio del local storage
+      //Falta gurdar en localstorag
+      window.location.href = 'SistemasPago/index.html';
+  }
+});
+

@@ -95,7 +95,7 @@
         </li>
         <li>
             <div class="etapa" id="realizandoProceso"><span>3</span></div>
-            <div><span class="etapaEnProceso">Descuentos y sistemas de pago</span></div>   
+            <div><span class="etapaEnProceso">Sistemas de pago</span></div>   
         </li>
         <li>
             <div class="etapa"><span>4</span></div>
@@ -104,17 +104,67 @@
       </ul>
     </nav>
     <main>
-      <h1>Datos del cliente</h1>
-      <form id="form" onsubmit="return validateForm()">
+      <h1>Sistemas de pago</h1>
+      <div class="container">
 
-    
-        <!-- Botón para Enviar -->
-        <div class="input-group">
-          <button class="button" type="button" id="saveButton" onclick="validateForm()">Continuar</button>
-        </div>
-        <a class="button" href="../index.html">Volver</a>
-    </form>
-  
+        <form id="paymentForm" action="pagar.html" method="POST">
+            <!-- Sección de códigos descuento -->
+            <div>            
+              <label for="discountCode">Código de descuento:</label>
+              <input type="text" id="discountCode" name="discountCode" placeholder="Introduce tu código">
+              <div id="discountMessage" class="error"></div>
+              <span id="precioCarritoDescuento">Precio total carrito: 180.00€</span>
+            </div>
+
+            <!-- Métodos de pago -->
+            <label for="paymentMethod">Método de pago:</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="">Selecciona un método de pago</option>
+                <option value="card">Tarjeta</option>
+                <option value="paypal">Paypal</option>
+                <option value="bankTransfer">Transferencia bancaria</option>
+            </select>
+
+            <!-- Detalles de tarjeta -->
+            <div id="cardDetails" style="display:none;">
+              <div>
+                <label for="cardName">Nombre en la tarjeta:</label>
+                <input type="text" id="cardName" name="cardName" placeholder="Nombre en la tarjeta">
+              </div>
+              <div>    
+                  <label for="cardNumber">Número de tarjeta:</label>
+                  <input type="text" id="cardNumber" name="cardNumber" placeholder="Número de tarjeta">
+              </div>
+              <div>           
+              <label for="expiryDate">Fecha de caducidad:</label>
+              <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/AA">
+            </div>
+              <div>
+                <label for="cvc">CVC:</label>
+                <input type="text" id="cvc" name="cvc" placeholder="CVC">
+              </div>
+         
+                <div id="cardMessage" class="error"></div>
+            </div>
+
+            <!-- Detalles de PayPal -->
+            <div id="paypalDetails" style="display:none;">
+                <label for="paypalEmail">Correo electrónico de Paypal:</label>
+                <input type="email" id="paypalEmail" name="paypalEmail" placeholder="Correo electrónico">
+                <div id="paypalMessage" class="error"></div>
+            </div>
+
+            <!-- Detalles de Transferencia bancaria -->
+            <div id="bankTransferDetails" style="display:none;">
+                <label for="bankTransferFile">Subir justificante de transferencia (PDF):</label>
+                <input type="file" id="bankTransferFile" name="bankTransferFile" accept=".pdf">
+                <div id="bankTransferMessage" class="error"></div>
+            </div>
+
+            <!-- Botón de pago -->
+            <button type="submit" class="button">Pagar</button>
+        </form>
+    </div>
     </main>
     <!---->
     <!--Footer-->
