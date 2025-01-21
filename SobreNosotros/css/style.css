@@ -1,0 +1,108 @@
+body {
+  /*Grip para la estructura de la página*/
+  display: grid;
+  grid-template-areas:
+    "head"
+    "nava"
+    "main"
+    "foot";
+    font-size: var(--font-size-base); /* Tamaño intermedio inicial */
+    line-height: 1.6;
+    font-family: Arial, sans-serif;
+}
+h1 {
+text-align: center;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 1rem;
+}
+
+.team-member{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-member img {
+  width: 10rem;
+  height:  10rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.mision-vision-valores {
+  display: flex;
+  flex-direction: column;
+}
+
+.mision-vision-valores .content {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+}
+
+
+.images-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.images-content > div{
+  margin: 1rem;
+}
+
+section > span, section >p , .content > p {
+  text-indent: 1rem;
+ }
+
+ .team span{
+    text-align: center;
+ }
+ .team-member:nth-child(5){
+  grid-column: span 2; /* Cada uno ocupa 1 columna */
+}
+
+
+@media screen and (min-width: 576px) {
+  .team-member:nth-child(5){
+    grid-column: span 2; /* Cada uno ocupa 1 columna */
+  }
+  
+}
+
+/* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+@media screen and (min-width: 912px),
+  (min-width: 576px) and (orientation: landscape) {
+    .team {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr); /* Tres columnas iguales en la primera fila */
+      justify-content: center; /* Centrar elementos en filas más pequeñas */
+
+  }
+  .team-member:nth-child(1), .team-member:nth-child(2), .team-member:nth-child(3){
+    grid-column: span 2; /* Cada uno ocupa 1 columna */
+}
+    .team-member:nth-child(4), .team-member:nth-child(5){
+      grid-column: span 3; /* Cada uno ocupa 1 columna */
+  }
+
+}
+
+/* Escritorio grande */
+@media screen and (min-width: 1024px) {
+  .team {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+  .team-member:nth-child(1), .team-member:nth-child(2), .team-member:nth-child(3){
+    grid-column: span 1; /* Cada uno ocupa 1 columna */
+}
+    .team-member:nth-child(4), .team-member:nth-child(5){
+      grid-column: span 1; /* Cada uno ocupa 1 columna */
+  }
+}
