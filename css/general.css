@@ -217,6 +217,10 @@
     width: 100%;
     border: 1px;
     border-radius: 12px;
+    transition: 0.2s;
+  }
+  img:hover {
+    scale: 1.05;
   }
   span{
     color: var(--color-texto);
