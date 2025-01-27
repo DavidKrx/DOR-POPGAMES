@@ -5,6 +5,7 @@
   --color-enfasis:  #ff7900;
   --color-fondo: #43a7ff;
   --color-texto:#000000;
+  --color-subrayado:#000000;
   --font-size-base: 2rem; /* Tamaño base del body */
   --font-size-step: 0.25rem; /* Incrementos de tamaño (4px equivalente en rem) */
   }
@@ -15,6 +16,7 @@
     --color-enfasis:  #ff7900;
     --color-fondo: #43a7ff;
     --color-texto:#000000;
+    --color-subrayado:#ffffff;
   }
   .nocturno {
       --color-bar-primario: #141414;
@@ -23,6 +25,7 @@
       --color-enfasis:  #ff7900;
       --color-fondo: rgb(43, 42, 51);
       --color-texto: #ffffff;
+      --color-subrayado:#ff7900;
   }
   
   * {
@@ -217,10 +220,7 @@
     width: 100%;
     border: 1px;
     border-radius: 12px;
-    transition: 0.2s;
-  }
-  img:hover {
-    scale: 1.05;
+    transition: 0.25s;
   }
   span{
     color: var(--color-texto);
@@ -253,6 +253,14 @@
     color: #000000;
   }
 
+  a:hover{
+    text-decoration: underline;
+    text-decoration-color: var(--color-subrayado);
+  }
+
+  img:hover{
+    box-shadow: 0.15rem 0.15rem 0.15rem 0.15rem rgba(0, 0, 0, 0.5);
+  }
   /* Estilos para el modo oscuro (dark mode) */
 
   

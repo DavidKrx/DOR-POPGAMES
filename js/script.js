@@ -475,7 +475,7 @@ function validateForm() {
       ERROR.errorphoneNumber.textContent = ""
     }
 
-    if(!document.getElementById('sameAsShipping').isChecked){
+    if(!document.getElementById('sameAsShipping').checked){
       if (!FORMULARIO.billingAddress.value) {
         ERROR.errorbillingAddress.textContent = "Campo obligatorio"
       } else {

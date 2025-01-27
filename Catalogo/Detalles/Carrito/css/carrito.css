@@ -34,6 +34,17 @@
       background-color: var(--color-producto);
     }
 
+    .etapaRealizada{
+      border: 2px solid black;
+      border-radius: 50%;
+      width: 4rem;
+      height: 4rem;
+      color: var(--color-texto);
+      justify-content: center;
+      align-items: center;
+      background-color: #e9cf1b;
+    }
+
     .etapaEnProceso{
       font-style: bold;
     }
