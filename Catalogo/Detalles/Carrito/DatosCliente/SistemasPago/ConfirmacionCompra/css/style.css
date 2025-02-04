@@ -1,3 +1,42 @@
+main > div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.card {
+  border: 1px solid #ccc;
+  padding: 0.1 rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.card img {
+  width: 100%;
+  border-radius: 8px;
+}
+.card h3 {
+  font-size: 18px;
+  color: #333;
+}
+.card p {
+  font-size: 14px;
+  color: #777;
+}
+.card .precio {
+  font-weight: bold;
+  color: #000;
+}
+.card .total {
+  font-size: 16px;
+  color: #E94E77;
+  font-weight: bold;
+}
+
+#user-info-container > div {
+  display: flex;
+  flex-direction: column;
+}
 
 @media screen and (min-width: 576px) {
 

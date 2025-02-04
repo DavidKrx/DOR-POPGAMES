@@ -359,6 +359,8 @@ function realizarPedido() {
 
   checkboxes.forEach(function (checkbox) {
     // Obtener el precio del producto seleccionado
+    const id = checkbox.closest('.artic').getAttribute("id");
+    const idRecortada = id.replace(/Id$/,'');
     const priceElement = checkbox.closest('.artic').querySelector('.price');
     const cantElement = checkbox.closest('.artic').querySelector('.cantidad');
     const nombreElement = checkbox.closest('.artic').querySelector('.name');
@@ -372,6 +374,7 @@ function realizarPedido() {
 
     // Almacenar el producto en el array
     productos.push({
+      id:idRecortada,
       nombre: nombre,
       cantidad: cantidad,
       precio: price,
@@ -538,17 +541,24 @@ function saveData() {
 //
 //SISTEMA DE PAGO
 //
-const carrito = JSON.parse(localStorage.getItem("carrito"));
-document.getElementById('precioCarritoDescuento').textContent=carrito.total.toFixed(2);
+if (localStorage.getItem('carrito')) {
+  const carrito = JSON.parse(localStorage.getItem("carrito"));
+  let doubleee= carrito.total.toFixed(2);
+  if(document.getElementById('precioCarritoDescuento')){
+  document.getElementById('precioCarritoDescuento').textContent=doubleee;}
 
+}
+
+if (document.getElementById('paymentMethod')){
 document.getElementById('paymentMethod').addEventListener('change', function () {
   const paymentMethod = this.value;
   document.getElementById('cardDetails').style.display = paymentMethod === 'card' ? 'block' : 'none';
   document.getElementById('paypalDetails').style.display = paymentMethod === 'paypal' ? 'block' : 'none';
   document.getElementById('bankTransferDetails').style.display = paymentMethod === 'bankTransfer' ? 'block' : 'none';
 });
+}
 let descuentoAplicado = 0;
-
+if (document.getElementById('discountCode')){
 document.getElementById('discountCode').addEventListener('input', function () {
   const discountCode = this.value;
   const discountMessage = document.getElementById('discountMessage');
@@ -569,7 +579,8 @@ document.getElementById('discountCode').addEventListener('input', function () {
     descuentoAplicado = 0;
   }
 });
-
+}
+if(document.getElementById('paymentForm')){
 document.getElementById('paymentForm').addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -633,6 +644,7 @@ document.getElementById('paymentForm').addEventListener('submit', function (e) {
     window.location.href = 'ConfirmacionCompra/index.html';
   }
 });
+}
 
 function limpiarCarritoStorage(){
 if (localStorage.getItem('carrito')) {
@@ -649,3 +661,72 @@ if (localStorage.getItem('paymentInfo')) {
 }
   window.location.href = '/../../../../../../Catalogo/Detalles/Carrito/index.html';
 }
+
+    // Recuperamos el carrito del localStorage
+    const carrito = JSON.parse(localStorage.getItem("carrito"));
+
+    // Contenedor donde se agregarán las cards
+    const carritoContainer = document.getElementById("carritoCardsContainer");
+
+    if (carrito && carrito.productos) {
+        carrito.productos.forEach(producto => {
+            // Creamos la card para cada producto
+            const card = document.createElement("div");
+            card.classList.add("card");
+
+            // Agregamos el contenido de la card
+            card.innerHTML = `
+                <img src="ruta-imagen.jpg" alt="${producto.nombre}"> <!-- Agrega la ruta de la imagen aquí -->
+                <h3>${producto.nombre}</h3>
+                <p>Cantidad: ${producto.cantidad}</p>
+                <p>Precio Unitario: $${producto.precio.toFixed(2)}</p>
+                <p class="precio">Precio Total: $${producto.total.toFixed(2)}</p>
+                <div>
+                <img alt="PNG" src="./../../../../../../../../../img/${producto.id}.png"/>
+                </div>
+            `;
+            
+            // Añadimos la card al contenedor del carrito
+            carritoContainer.appendChild(card);
+
+        });
+    } else {
+        carritoContainer.innerHTML = "<p>No hay productos en el carrito.</p>";
+    }
+
+// Llamar a la función para cargar las cards cuando se carga la página
+    // Obtener la información del localStorage bajo la clave 'formData'
+    const userInfo = JSON.parse(localStorage.getItem('formData'));
+
+    // Verificamos si los datos existen antes de procesarlos
+    if (userInfo) {
+        // Contenedor donde se agregará la información
+        const userInfoContainer = document.getElementById("user-info-container");
+
+        // Creamos un artículo que contiene la información del usuario
+        const userCard = document.createElement("div");
+        userCard.classList.add("card");
+
+        // Agregamos la información al artículo
+        userCard.innerHTML = `
+            <span><span class="highlight">Nombre Completo:</span> ${userInfo.fullName}</span>
+            <span><span class="highlight">Correo Electrónico:</span> ${userInfo.email}</span>
+            <span><span class="highlight">Dirección de Envío:</span> ${userInfo.shippingAddress}</span>
+            <span><span class="highlight">Código Postal de Envío:</span> ${userInfo.shippingPostalcod}</span>
+            <span><span class="highlight">Número de Teléfono:</span> ${userInfo.phoneNumber}</span>
+            <span><span class="highlight">Zona:</span> ${userInfo.zone}</span>
+            <span><span class="highlight">Método de Envío:</span> ${userInfo.shippingMethod}</span>
+            <span><span class="highlight">Método:</span> ${userInfo.method}</span>
+            <span><span class="highlight">¿Es la misma dirección de envío?</span> ${userInfo.sameAsShipping ? 'Sí' : 'No'}</span>
+            <span><span class="highlight">Dirección de Facturación:</span> ${userInfo.billingAddress || 'No especificada'}</span>
+            <span><span class="highlight">Código Postal de Facturación:</span> ${userInfo.billingPostalcod || 'No especificado'}</span>
+        `;
+
+        // Agregamos el artículo al contenedor principal
+        userInfoContainer.appendChild(userCard);
+    } else {
+        // Si no se encuentra la información en localStorage
+        alert('No se encontraron datos en el localStorage.');
+    }
+
+

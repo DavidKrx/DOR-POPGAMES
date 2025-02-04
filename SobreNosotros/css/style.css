@@ -70,14 +70,14 @@ section > span, section >p , .content > p {
   grid-column: span 2; /* Cada uno ocupa 1 columna */
 }
 
+.descripVideo {
+  display: flex;
+  flex-direction: column;
+}
+
 .videos-content video{
   width: 100%;
   height: 100%;
-}
-
-.videos-content iframe{
-  width: 100%;
-  height: 25rem;
 }
 
 .enlaceYT{
@@ -124,10 +124,5 @@ section > span, section >p , .content > p {
   .videos-content {
     flex-direction: row;
     justify-content: space-between;
-  }
-
-  .videos-content iframe{
-    width: 100%;
-    height: 100%;
   }
 }
