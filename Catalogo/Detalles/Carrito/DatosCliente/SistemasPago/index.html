@@ -105,8 +105,6 @@
     </nav>
     <main>
       <h1>Sistemas de pago</h1>
-      <div class="container">
-
         <form id="paymentForm" action="pagar.html" method="POST">
             <!-- Sección de códigos descuento -->
             <fieldset>
@@ -121,7 +119,7 @@
             <!-- Métodos de pago -->
             <fieldset>
               <legend>Métodos</legend>
-            <label for="paymentMethod">Método de pago:</label>
+            <label for="paymentMethod">Formato de pago:</label>
             <select id="paymentMethod" name="paymentMethod" required>
                 <option value="" disabled selected>Selecciona un método de pago</option>
                 <option value="card">Tarjeta</option>
@@ -130,9 +128,9 @@
             </select>
            </fieldset>
             <!-- Detalles de tarjeta -->
-            <fieldset>
+            <fieldset id="cardDetails" style="display:none;">
+            
               <legend>Detalles Tarjeta</legend>
-            <div id="cardDetails" style="display:none;">
               <div>
                 <label for="cardName">Nombre del titular de la tarjeta:</label>
                 <input type="text" id="cardName" name="cardName" pattern="^[a-zA-Z]+(?:\s[a-zA-Z]+)*$" placeholder="Nombre">
@@ -147,29 +145,30 @@
             </div>
               <div>
                 <label for="cvc">CVC:</label>
-                <input type="text" id="cvc" name="cvc" placeholder="CVC">
+                <input type="text" id="cvc" name="cvc" placeholder="CVC" maxlength="3">
               </div>
          
                 <div id="cardMessage" class="error"></div>
-            </div>
+       
             </fieldset>
             <!-- Detalles de PayPal -->
-            <fieldset>
+            <fieldset id="paypalDetails" style="display:none;">
+              
+
               <legend>Detalles Paypal</legend>
-            <div id="paypalDetails" style="display:none;">
                 <label for="paypalEmail">Correo electrónico de Paypal:</label>
                 <input type="email" id="paypalEmail" name="paypalEmail" placeholder="Correo electrónico">
                 <div id="paypalMessage" class="error"></div>
-            </div>
+       
             </fieldset>
             <!-- Detalles de Transferencia bancaria -->
-            <fieldset>
+            <fieldset id="bankTransferDetails" style="display:none;">
               <legend>Transferencia bancaria</legend>
-            <div id="bankTransferDetails" style="display:none;">
+     
                 <label for="bankTransferFile">Subir justificante de transferencia (PDF):</label>
                 <input type="file" id="bankTransferFile" name="bankTransferFile" accept=".pdf">
                 <div id="bankTransferMessage" class="error"></div>
-            </div>
+        
           </fieldset>
             <!-- Botón de pago -->
             <button type="submit" class="button">Pagar</button>
@@ -177,7 +176,7 @@
               <a class="button" href="../index.html"><i class="fa-solid fa-arrow-left"></i>Atras</a>
             </div>
         </form>
-    </div>
+
     </main>
     <!---->
     <!--Footer-->

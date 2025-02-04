@@ -6,28 +6,33 @@
             margin-bottom: 20px;
         }
         .input-group {
-            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 0.1rem;
         }
-        .error{
-            color: red;
-        }
+
         .volverEnviar{
             display: flex;
             flex-direction: column;
         }
         
 fieldset {
+    display: flex;
+    flex-direction: column;
     border: 1px solid #ccc;
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 0.1rem;
     border-radius: 5px;
-    background-color: #fff;
 }
 fieldset > div {
     display: flex;
     flex-direction: column;
 }
 
+.input-group > div {
+    display: flex;
+    flex-direction: row;
+}
 
 legend {
     font-size: 1.2em;
@@ -41,20 +46,51 @@ label {
     margin-bottom: 5px;
 }
 
-@media screen and (min-width: 576px) {
+input , select{
+    width: auto;
+    margin-right: 2rem;
+    margin-left: 1rem;
+    padding: 0.5rem;
+}
 
+input[type="checkbox"]{
+    margin-right: 0.2rem;
+    width: 1.5rem;
+}
+
+@media screen and (min-width: 576px) {
 }
 
 /* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
 @media screen and (min-width: 912px),
   (min-width: 576px) and (orientation: landscape) {
-    fieldset {
-        display: flex;
-        flex-direction: row;
-    }  
+    fieldset, #shippingData, #billingData{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #shippingData{
+        grid-column: span 2;
+    }
+
+    #billingData > div:nth-child(2) {
+        grid-column: span 2;
+    }
+
 }
 
 /* Escritorio grande */
 @media screen and (min-width: 1024px) {
+    fieldset, #shippingData, #billingData{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 
+    #shippingData{
+        grid-column: span 2;
+    }
+
+    #billingData > div:nth-child(2) {
+        grid-column: span 2;
+    }
 }

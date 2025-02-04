@@ -41,6 +41,13 @@ window.onload = function () {
     dia.setAttribute("class", "fa-solid fa-moon");
     document.body.setAttribute("class", "diurno");
   }
+  if (localStorage.getItem('formData')){
+    loadFormData();
+  }
+  if (localStorage.getItem('paymentInfo')){
+    loadPaymentData();
+  }
+
 };
 
 // Elementos principales
@@ -447,10 +454,10 @@ function updateShippingMethods() {
   methodsSelect.innerHTML = '<option value="">Seleccionar...</option>';
 
   if (zone === 'Peninsula') {
-    methodsSelect.innerHTML += `<option value="RcTienda">Recogida en tienda - Gratis</option>
-                                   <option value="EnvioCasa">Envio a casa - 10€</option>`;
+    methodsSelect.innerHTML += `<option value="Recogida en tienda">Recogida en tienda - Gratis</option>
+                                   <option value="Envio a casa">Envio a casa - 10€</option>`;
   } else if (zone === 'Canarias') {
-    methodsSelect.innerHTML += `<option value="RcTienda">Recogida en tienda</option>`;
+    methodsSelect.innerHTML += `<option value="Recogida en tienda">Recogida en tienda</option>`;
   } else if (zone === 'Baleares') {
   }
 
@@ -466,7 +473,7 @@ function validateForm() {
   const zone = document.getElementById('zone');
   const method = document.getElementById('shippingMethod');
 
-  if (!fullName.value || (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email.value)) || !shippingAddress.value || !shippingPostalcod.value || !phoneNumber.value || !zone.value || !method.value) {
+  if (!fullName.value || (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email.value)) || !shippingAddress.value || !shippingPostalcod.validationMessage==""|| !phoneNumber.validationMessage==""|| !phoneNumber.value  || !zone.value || !method.value) {
     if (!fullName.value) {
       ERROR.errorfullName.textContent = "Campo obligatorio"
     } else {
@@ -489,16 +496,20 @@ function validateForm() {
     }
     if (!shippingPostalcod.value) {
       ERROR.errorshippingPostalcod.textContent = "Campo obligatorio"
+    } else if (!shippingPostalcod.validationMessage=="") {
+      ERROR.errorshippingPostalcod.textContent = "Tiene que empezar por 38"
     } else {
       ERROR.errorshippingPostalcod.textContent = ""
     }
+   
 
     if (!phoneNumber.value) {
       ERROR.errorphoneNumber.textContent = "Campo obligatorio"
+    } else  if (!phoneNumber.validationMessage=="") {
+      ERROR.errorphoneNumber.textContent = "Solo puede contener digitos"
     } else {
       ERROR.errorphoneNumber.textContent = ""
     }
-
     if(!document.getElementById('sameAsShipping').checked){
       if (!FORMULARIO.billingAddress.value) {
         ERROR.errorbillingAddress.textContent = "Campo obligatorio"
@@ -517,14 +528,37 @@ function validateForm() {
        ERROR.errorbillingAddress.textContent = ""
        ERROR.errorbillingPostalcod.textContent = ""
     }
+
+
+    document.getElementById('sameAsShipping').addEventListener("change", () => {
+      if(!document.getElementById('sameAsShipping').checked){
+        if (!FORMULARIO.billingAddress.value) {
+          ERROR.errorbillingAddress.textContent = "Campo obligatorio"
+        } else {
+           ERROR.errorbillingAddress.textContent = ""
+        }
+        if (!FORMULARIO.billingPostalcod.value) {
+          ERROR.errorbillingPostalcod.textContent = "Campo obligatorio"
+        } else {
+           ERROR.errorbillingPostalcod.textContent = ""
+        }
+        if(FORMULARIO.billingPostalcod.isValid){
+            ERROR.errorbillingPostalcod.textContent = ""
+        }
+      } else{
+         ERROR.errorbillingAddress.textContent = ""
+         ERROR.errorbillingPostalcod.textContent = ""
+      }
+    })
+
     return false;
   } else {
-    saveData();
+    saveFormData();
   }
 }
 
 
-function saveData() {
+function saveFormData() {
   const formData = {
     fullName: document.getElementById('fullName').value,
     email: document.getElementById('email').value,
@@ -543,6 +577,28 @@ function saveData() {
   window.location.href = 'SistemasPago/index.html';
 }
 
+///Cargar los datos
+function loadFormData() {
+  // Recuperamos los datos del localStorage
+  const savedData = localStorage.getItem('formData');
+
+  if (savedData) {
+    const formData = JSON.parse(savedData);
+    if (document.getElementById('fullName')&&document.getElementById('email')){
+    // Rellenamos los campos del formulario con los datos recuperados
+    document.getElementById('fullName').value = formData.fullName || '';
+    document.getElementById('email').value = formData.email || '';
+    document.getElementById('shippingAddress').value = formData.shippingAddress || '';
+    document.getElementById('shippingPostalcod').value = formData.shippingPostalcod || '';
+    document.getElementById('billingAddress').value = formData.billingAddress || '';
+    document.getElementById('billingPostalcod').value = formData.billingPostalcod || '';
+    document.getElementById('phoneNumber').value = formData.phoneNumber || '';
+    document.getElementById('zone').value = formData.zone || '';
+    document.getElementById('shippingMethod').value = formData.shippingMethod || '';
+    document.getElementById('sameAsShipping').checked = formData.sameAsShipping || false;
+  }}
+}
+
 //
 //SISTEMA DE PAGO
 //
@@ -551,7 +607,6 @@ if (localStorage.getItem('carrito')) {
   let doubleee= carrito.total.toFixed(2);
   if(document.getElementById('precioCarritoDescuento')){
   document.getElementById('precioCarritoDescuento').textContent=doubleee;}
-
 }
 
 if (document.getElementById('paymentMethod')){
@@ -592,13 +647,14 @@ document.getElementById('paymentForm').addEventListener('submit', function (e) {
   let isValid = true;
   const paymentMethod = document.getElementById('paymentMethod').value;
   const cardNumber = document.getElementById('cardNumber').value;
+  const cardName = document.getElementById('cardName').value;
   const cvc = document.getElementById('cvc').value;
   const expiryDate = document.getElementById('expiryDate').value;
   const paypalEmail = document.getElementById('paypalEmail').value;
   const bankTransferFile = document.getElementById('bankTransferFile').files.length;
 
   if (paymentMethod === 'card') {
-    if (!/^\d{16}$/.test(cardNumber) || !/^\d{3}$/.test(cvc) || !/^\d{2}\/\d{2}$/.test(expiryDate)) {
+    if (!/^\d{16}$/.test(cardNumber) || !/^\d{3}$/.test(cvc) || !/^\d{2}\/\d{2}$/.test(expiryDate) ||cardNumber.value=="") {
       document.getElementById('cardMessage').textContent = 'Revisa los datos de tu tarjeta.';
       isValid = false;
     }
@@ -627,6 +683,7 @@ document.getElementById('paymentForm').addEventListener('submit', function (e) {
 
     if (paymentMethod === 'card') {
       paymentData.details = {
+        cardName,
         cardNumber,
         expiryDate,
         cvc
@@ -651,6 +708,44 @@ document.getElementById('paymentForm').addEventListener('submit', function (e) {
 });
 }
 
+function loadPaymentData() {
+  // Recuperar los datos del localStorage
+  const savedPaymentData = localStorage.getItem('paymentInfo');
+
+  if (savedPaymentData) {
+    const paymentData = JSON.parse(savedPaymentData);
+    if (document.getElementById('paymentMethod')){
+    // Restaurar el método de pago seleccionado
+    document.getElementById('paymentMethod').value = paymentData.paymentMethod;
+
+    // Mostrar u ocultar los detalles según el método de pago
+    document.getElementById('cardDetails').style.display = paymentData.paymentMethod === 'card' ? 'block' : 'none';
+    document.getElementById('paypalDetails').style.display = paymentData.paymentMethod === 'paypal' ? 'block' : 'none';
+    document.getElementById('bankTransferDetails').style.display = paymentData.paymentMethod === 'bankTransfer' ? 'block' : 'none';
+
+    // Restaurar los detalles del método de pago
+    if (paymentData.paymentMethod === 'card') {
+      document.getElementById('cardName').value = paymentData.details.cardName || '';
+      document.getElementById('cardNumber').value = paymentData.details.cardNumber || '';
+      document.getElementById('expiryDate').value = paymentData.details.expiryDate || '';
+      document.getElementById('cvc').value = paymentData.details.cvc || '';
+    } else if (paymentData.paymentMethod === 'paypal') {
+      document.getElementById('paypalEmail').value = paymentData.details.paypalEmail || '';
+    } else if (paymentData.paymentMethod === 'bankTransfer') {
+      // No se puede restaurar el archivo cargado, pero puedes mostrar un mensaje
+      document.getElementById('bankTransferMessage').textContent = 'Archivo cargado previamente.';
+    }
+
+    // Restaurar el descuento aplicado
+    if (paymentData.descuento) {
+      document.getElementById('discountCode').value = 'DESCUENTO' + paymentData.descuento;
+      document.getElementById('discountMessage').textContent = `Código válido. Descuento: ${paymentData.descuento}%`;
+      const precioCarritoDescuento = document.getElementById('precioCarritoDescuento');
+      precioCarritoDescuento.textContent = (paymentData.total).toFixed(2);
+    }
+  }}
+}
+
 function limpiarCarritoStorage(){
 if (localStorage.getItem('carrito')) {
   localStorage.removeItem('carrito');
@@ -666,26 +761,25 @@ if (localStorage.getItem('paymentInfo')) {
 }
   window.location.href = '/../../../../../../Catalogo/Detalles/Carrito/index.html';
 }
-
+if (localStorage.getItem("carrito")){
     // Recuperamos el carrito del localStorage
     const carrito = JSON.parse(localStorage.getItem("carrito"));
-
+  if(document.getElementById("carritoCardsContainer")){
     // Contenedor donde se agregarán las cards
     const carritoContainer = document.getElementById("carritoCardsContainer");
 
     if (carrito && carrito.productos) {
         carrito.productos.forEach(producto => {
             // Creamos la card para cada producto
-            const card = document.createElement("div");
+            const card = document.createElement("article");
             card.classList.add("card");
 
             // Agregamos el contenido de la card
             card.innerHTML = `
-                <img src="ruta-imagen.jpg" alt="${producto.nombre}"> <!-- Agrega la ruta de la imagen aquí -->
-                <h3>${producto.nombre}</h3>
-                <p>Cantidad: ${producto.cantidad}</p>
-                <p>Precio Unitario: $${producto.precio.toFixed(2)}</p>
-                <p class="precio">Precio Total: $${producto.total.toFixed(2)}</p>
+                <h1>${producto.nombre}</h1>
+                <span>Cantidad: ${producto.cantidad}</span>
+                 <span>Precio Unitario: $${producto.precio.toFixed(2)}</span>
+                 <span class="precio">Precio Total: $${producto.total.toFixed(2)}</span>
                 <div>
                 <img alt="PNG" src="./../../../../../../../../../img/${producto.id}.png"/>
                 </div>
@@ -698,6 +792,8 @@ if (localStorage.getItem('paymentInfo')) {
     } else {
         carritoContainer.innerHTML = "<p>No hay productos en el carrito.</p>";
     }
+  }
+  }
 
 // Llamar a la función para cargar las cards cuando se carga la página
     // Obtener la información del localStorage bajo la clave 'formData'
@@ -709,7 +805,7 @@ if (localStorage.getItem('paymentInfo')) {
         const userInfoContainer = document.getElementById("user-info-container");
 
         // Creamos un artículo que contiene la información del usuario
-        const userCard = document.createElement("div");
+        const userCard = document.createElement("article");
         userCard.classList.add("card");
 
         // Agregamos la información al artículo
@@ -720,18 +816,62 @@ if (localStorage.getItem('paymentInfo')) {
             <span><span class="highlight">Código Postal de Envío:</span> ${userInfo.shippingPostalcod}</span>
             <span><span class="highlight">Número de Teléfono:</span> ${userInfo.phoneNumber}</span>
             <span><span class="highlight">Zona:</span> ${userInfo.zone}</span>
-            <span><span class="highlight">Método de Envío:</span> ${userInfo.shippingMethod}</span>
-            <span><span class="highlight">Método:</span> ${userInfo.method}</span>
+            <span><span class="highlight">Método de Envío:</span> ${userInfo.method}</span>
             <span><span class="highlight">¿Es la misma dirección de envío?</span> ${userInfo.sameAsShipping ? 'Sí' : 'No'}</span>
-            <span><span class="highlight">Dirección de Facturación:</span> ${userInfo.billingAddress || 'No especificada'}</span>
-            <span><span class="highlight">Código Postal de Facturación:</span> ${userInfo.billingPostalcod || 'No especificado'}</span>
+            <span><span class="highlight">Dirección de Facturación:</span> ${userInfo.billingAddress || userInfo.shippingAddress}</span>
+            <span><span class="highlight">Código Postal de Facturación:</span> ${userInfo.billingPostalcod || userInfo.shippingPostalcod}</span>
         `;
 
         // Agregamos el artículo al contenedor principal
         userInfoContainer.appendChild(userCard);
     } else {
-        // Si no se encuentra la información en localStorage
-        alert('No se encontraron datos en el localStorage.');
     }
 
+    function displayPaymentInfo() {
+      
+      // Recuperar los datos del localStorage
+      const paymentInfo = JSON.parse(localStorage.getItem('paymentInfo'));
+    
+      if (paymentInfo) {
+        const paymentInfoContainer = document.getElementById("payment-info-container");
+        const article = document.createElement('article');
+        article.id = 'payment-info';
+    
+        // Función para crear un span con un label y un valor
+        const createSpan = (label, value) => {
+          const span = document.createElement('span');
+          span.innerHTML = `<strong>${label}:</strong> ${value}`;
+          return span;
+        };
+    
+        // Agregar los datos del paymentInfo al article
+        article.appendChild(createSpan('Método de Pago', paymentInfo.paymentMethod));
+        // Agregar los detalles específicos del método de pago
+        if (paymentInfo.paymentMethod === 'card') {
+        
+          article.appendChild(createSpan('Titular de la Tarjeta', paymentInfo.details.cardName));
+          article.appendChild(createSpan('Número de Tarjeta', paymentInfo.details.cardNumber));
+          article.appendChild(createSpan('Fecha de Expiración', paymentInfo.details.expiryDate));
+          article.appendChild(createSpan('CVC', paymentInfo.details.cvc));
+        } else if (paymentInfo.paymentMethod === 'paypal') {
+          article.appendChild(createSpan('Correo de PayPal', paymentInfo.details.paypalEmail));
+        } else if (paymentInfo.paymentMethod === 'bankTransfer') {
+          article.appendChild(createSpan('Justificante', paymentInfo.details.bankTransferProof));
+        }
+        article.appendChild(createSpan('Descuento', `${paymentInfo.descuento}%`));
+        if (localStorage.getItem('carrito')) {
+          const carrito = JSON.parse(localStorage.getItem("carrito"));
+          let totalfinal= carrito.total.toFixed(2);
+          article.appendChild(createSpan('Total(descuentos no aplicados)', totalfinal));
+          if(paymentInfo.descuento>0){
+            totalfinal = (totalfinal - ((totalfinal * paymentInfo.descuento)/100)).toFixed(2);}
 
+            article.appendChild(createSpan('Total', totalfinal));
+        }
+        // Agregar el article al cuerpo del documento
+        paymentInfoContainer.appendChild(article);
+      } else {
+        console.log('No hay datos de pago guardados en el localStorage.');
+      }
+    }
+    displayPaymentInfo();

@@ -44,6 +44,9 @@
       align-items: center;
       background-color: #e9cf1b;
     }
+    .etapaRealizada > span, #realizandoProceso > span{
+      color: black;
+    }
 
     .etapaEnProceso{
       font-style: bold;
@@ -61,6 +64,12 @@
       background-color: var(--color-enfasis);
     }
 
+    legend {
+      font-size: 2rem;
+    }
+    .error{
+      color: red;
+  }
 
     /* Tablets y phablets  2 */
   @media screen and (min-width: 576px) {
