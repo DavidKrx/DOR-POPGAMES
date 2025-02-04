@@ -105,8 +105,10 @@
     <main>
       <h1>Datos del cliente</h1>
         <!-- Datos Personales -->
+        <fieldset>
+          <legend>Datos Personales</legend>
         <div class="category" id="personalData">
-          <h2>Datos Personales</h2>
+          <legend>Datos Personales</legend>
           <div class="input-group">
             <label for="fullName">Nombre Completo:</label>
             <input type="text" id="fullName" name="fullName" pattern="[A-Za-z]+" minlength="4" maxlength="20" required>
@@ -118,10 +120,11 @@
             <span id="erroremail" class="error"></span>
           </div>
         </div>
-      
+      </fieldset>
         <!-- Datos de Envío -->
+        <fieldset>
+          <legend>Datos de Envío</legend>
         <div class="category" id="shippingData">
-          <h2>Datos de Envío</h2>
           <div class="input-group">
             <label for="shippingPostalcod">Codigo Postal:</label>
             <input id="shippingPostalcod" name="shippingPostalcod" type="text" pattern="^38[0-9]{3}$" placeholder="38XXX" maxlength="5" required>
@@ -133,10 +136,11 @@
             <span id="errorshippingAddress" class="error"></span>
           </div>
         </div>
-      
+        </fieldset>
         <!-- Datos de Facturación -->
+        <fieldset>
         <div class="category" id="billingData">
-          <h2>Datos de Facturación</h2>
+          <legend>Datos de Facturación</legend>
           <div class="input-group">
             <input type="checkbox" id="sameAsShipping" name="sameAsShipping" onclick="toggleBillingData()"> 
             <label for="sameAsShipping">Mis datos de facturación son los mismos que los de envío</label>
@@ -152,27 +156,29 @@
             <span id="errorbillingAddress" class="error"></span>
           </div>
         </div>
-      
+      </fieldset>
         <!-- Datos de Contacto -->
+        <fieldset>
         <div class="category" id="contactData">
-          <h2>Datos de Contacto</h2>
+          <legend>Datos de Contacto</legend>
           <div class="input-group">
             <label for="phoneNumber">Teléfono de Contacto:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" required>
+            <input type="text" id="phoneNumber" name="phoneNumber" pattern="^\d{9}$" maxlength="9" required>
             <span id="errorphoneNumber" class="error"></span>
           </div>
         </div>
-      
+      </fieldset>
         <!-- Zona de Envío -->
+        <fieldset>
         <div class="category" id="shippingZone">
-          <h2>Zona de Envío</h2>
+          <legend>Zona de Envío</legend>
           <div class="input-group">
             <label for="zone">Selecciona tu zona de envío:</label>
             <select id="zone" name="zone" onchange="updateShippingMethods()" required>
-              <option value="">Seleccionar...</option>
-              <option value="zona1">Zona 1 (Métodos: Estándar, Exprés)</option>
-              <option value="zona2">Zona 2 (Método: Económico)</option>
-              <option value="zona3">Zona 3 (No servida)</option>
+              <option value="" disabled selected>Seleccionar...</option>
+              <option value="Peninsula">Peninsula</option>
+              <option value="Canarias">Canarias</option>
+              <option value="Baleares" disabled>Baleares (No servida)</option>
             </select>
             <span id="errorzone" class="error"></span>
           </div>
@@ -184,7 +190,7 @@
             <span id="errorshippingMethod" class="error"></span>
           </div>
         </div>
-      
+      </fieldset>
         <!-- Botón para Enviar -->
         <div>
           <button class="button" type="button" id="saveButton" onclick="validateForm()">Continuar</button>

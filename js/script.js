@@ -446,13 +446,12 @@ function updateShippingMethods() {
   // Limpiar métodos de envío
   methodsSelect.innerHTML = '<option value="">Seleccionar...</option>';
 
-  if (zone === 'zona1') {
-    methodsSelect.innerHTML += `<option value="Estándar">Estándar - $5</option>
-                                   <option value="Exprés">Exprés - $10</option>`;
-  } else if (zone === 'zona2') {
-    methodsSelect.innerHTML += `<option value="Económico">Económico - $3</option>`;
-  } else if (zone === 'zona3') {
-    methodsSelect.innerHTML += `<option value="No Servida">No Servida</option>`;
+  if (zone === 'Peninsula') {
+    methodsSelect.innerHTML += `<option value="RcTienda">Recogida en tienda - Gratis</option>
+                                   <option value="EnvioCasa">Envio a casa - 10€</option>`;
+  } else if (zone === 'Canarias') {
+    methodsSelect.innerHTML += `<option value="RcTienda">Recogida en tienda</option>`;
+  } else if (zone === 'Baleares') {
   }
 
   methodsDiv.classList.remove('hidden');
@@ -467,7 +466,7 @@ function validateForm() {
   const zone = document.getElementById('zone');
   const method = document.getElementById('shippingMethod');
 
-  if (!fullName.value || !email.value || !shippingAddress.value || !shippingPostalcod.value || !phoneNumber.value || !zone.value || !method.value) {
+  if (!fullName.value || (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email.value)) || !shippingAddress.value || !shippingPostalcod.value || !phoneNumber.value || !zone.value || !method.value) {
     if (!fullName.value) {
       ERROR.errorfullName.textContent = "Campo obligatorio"
     } else {
@@ -475,6 +474,11 @@ function validateForm() {
     }
     if (!email.value) {
       ERROR.erroremail.textContent = "Campo obligatorio"
+    } else {
+      ERROR.erroremail.textContent = ""
+    }
+    if ((!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(email.value))) {
+      ERROR.erroremail.textContent = "Tiene que tener un formato correcto de email"
     } else {
       ERROR.erroremail.textContent = ""
     }
@@ -506,12 +510,13 @@ function validateForm() {
       } else {
          ERROR.errorbillingPostalcod.textContent = ""
       }
+      if(FORMULARIO.billingPostalcod.isValid){
+          ERROR.errorbillingPostalcod.textContent = ""
+      }
     } else{
        ERROR.errorbillingAddress.textContent = ""
        ERROR.errorbillingPostalcod.textContent = ""
     }
-
-    alert("Rellene los campos obligatorios");
     return false;
   } else {
     saveData();
