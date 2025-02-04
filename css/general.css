@@ -253,9 +253,13 @@
     color: #000000;
   }
 
-  a:hover{
+  a:hover, a:focus{
     text-decoration: underline;
     text-decoration-color: var(--color-subrayado);
+  }
+
+  .button:hover, .button:focus{
+    text-decoration: none;
   }
 
   img:hover{

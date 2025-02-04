@@ -116,8 +116,13 @@ function obtenerTotal() {
 
   checkboxes.forEach(function (checkbox) {
     // Obtener el precio y la cantidad del producto seleccionado
+    const id = checkbox.closest('.artic').getAttribute("id");
+    const idRecortada = id.replace(/Id$/,'');
+
     const priceElement = checkbox.closest('.artic').querySelector('.price');
     const cantElement = checkbox.closest('.artic').querySelector('.cantidad');
+    const prca=idRecortada+"PriceXcantidad";
+    const precioXCantidad=document.getElementById(prca);
 
     const price = parseFloat(priceElement.textContent); // Convertimos el precio a número
     const cantidad = parseInt(cantElement.value, 10); // Convertimos la cantidad a número
@@ -126,7 +131,10 @@ function obtenerTotal() {
     if (cantidad > 0) {
       subtotal += price * cantidad; // Sumamos el precio al total
       cantidadProducto = true; // Hay al menos un producto con cantidad > 0
-    }
+      precioXCantidad.textContent="";
+    } 
+    if(cantidad>1){precioXCantidad.textContent=(price * cantidad).toFixed(2)+" €";}
+
 
     // Si la cantidad es 0, deshabilitamos el botón
     if (cantidad === 0) {
@@ -164,12 +172,16 @@ document.querySelectorAll('.cantidad').forEach(function (input) {
 
 // Función para incrementar el valor del input
 function incrementar(inputId) {
+
   const input = document.getElementById(inputId); // Obtener el input por su id
   let currentValue = parseInt(input.value); // Obtener el valor actual como número
+
+// Convertimos el precio a número
 
   // Asegurarse de que el valor no exceda el máximo permitido
   if (currentValue < input.max) {
     input.value = currentValue + 1; // Incrementar el valor
+
     obtenerTotal();
   }
 }
@@ -244,9 +256,13 @@ function agregarCarrito() {
   priceSpan.classList.add('price');
   priceSpan.textContent = precio;
 
+  const precioPortSpan = document.createElement('span');
+  precioPortSpan.textContent = "Precio por Unidad:";
+
   // Crear la fecha de entrega
   const fechaSpan = document.createElement('span');
-  fechaSpan.textContent = 'Recíbelo entre el miércoles 1 y el jueves 2 de febrero';
+  fechaSpan.setAttribute("id","spacemarinePriceXcantidad")
+  fechaSpan.textContent = '';
 
   // Crear las acciones (botones)
   const actionsDiv = document.createElement('div');
@@ -296,6 +312,7 @@ function agregarCarrito() {
   // Estructura del artículo
   // Añadir elementos a sus contenedores respectivos
   articleContenDiv.appendChild(h2);
+  priceDiv.appendChild(precioPortSpan);
   priceDiv.appendChild(priceSpan);
   articleContenDiv.appendChild(priceDiv);
   articleContenDiv.appendChild(fechaSpan);
@@ -521,34 +538,41 @@ function saveData() {
 //
 //SISTEMA DE PAGO
 //
+const carrito = JSON.parse(localStorage.getItem("carrito"));
+document.getElementById('precioCarritoDescuento').textContent=carrito.total.toFixed(2);
+
 document.getElementById('paymentMethod').addEventListener('change', function () {
   const paymentMethod = this.value;
   document.getElementById('cardDetails').style.display = paymentMethod === 'card' ? 'block' : 'none';
   document.getElementById('paypalDetails').style.display = paymentMethod === 'paypal' ? 'block' : 'none';
   document.getElementById('bankTransferDetails').style.display = paymentMethod === 'bankTransfer' ? 'block' : 'none';
 });
+let descuentoAplicado = 0;
 
 document.getElementById('discountCode').addEventListener('input', function () {
   const discountCode = this.value;
   const discountMessage = document.getElementById('discountMessage');
-  const precioCarritoDescuento=document.getElementById('precioCarritoDescuento');
+  const precioCarritoDescuento = document.getElementById('precioCarritoDescuento');
+
+  let precioActual = parseFloat(precioCarritoDescuento.textContent);
 
   if (discountCode === 'DESCUENTO10') {
-      discountMessage.textContent = 'Código válido. Descuento: 10%';
-      precioCarritoDescuento.textContent='Precio total carrito: 162.00€'
-      // Aquí podrías actualizar el total del carrito
+    discountMessage.textContent = 'Código válido. Descuento: 10%';
+    descuentoAplicado = 10;
+    precioCarritoDescuento.textContent = (precioActual - precioActual * 0.10).toFixed(2);
   } else if (discountCode === 'DESCUENTO20') {
-      discountMessage.textContent = 'Código válido. Descuento: 20%';
-      // Actualizar el total del carrito
+    discountMessage.textContent = 'Código válido. Descuento: 20%';
+    descuentoAplicado = 20;
+    precioCarritoDescuento.textContent = (precioActual - precioActual * 0.20).toFixed(2);
   } else {
-      discountMessage.textContent = 'Código no válido';
+    discountMessage.textContent = 'Código no válido';
+    descuentoAplicado = 0;
   }
 });
 
 document.getElementById('paymentForm').addEventListener('submit', function (e) {
   e.preventDefault();
-  
-  // Validación de campos obligatorios
+
   let isValid = true;
   const paymentMethod = document.getElementById('paymentMethod').value;
   const cardNumber = document.getElementById('cardNumber').value;
@@ -557,39 +581,71 @@ document.getElementById('paymentForm').addEventListener('submit', function (e) {
   const paypalEmail = document.getElementById('paypalEmail').value;
   const bankTransferFile = document.getElementById('bankTransferFile').files.length;
 
-  // Verificación de método de pago
   if (paymentMethod === 'card') {
-      if (!/^\d{16}$/.test(cardNumber)) {
-          document.getElementById('cardMessage').textContent = 'El número de tarjeta debe tener 16 dígitos';
-          isValid = false;
-      }
-      if (!/^\d{3}$/.test(cvc)) {
-          document.getElementById('cardMessage').textContent = 'El CVC debe tener 3 dígitos';
-          isValid = false;
-      }
-      if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
-          document.getElementById('cardMessage').textContent = 'La fecha de caducidad debe estar en formato MM/AA';
-          isValid = false;
-      }
+    if (!/^\d{16}$/.test(cardNumber) || !/^\d{3}$/.test(cvc) || !/^\d{2}\/\d{2}$/.test(expiryDate)) {
+      document.getElementById('cardMessage').textContent = 'Revisa los datos de tu tarjeta.';
+      isValid = false;
+    }
   } else if (paymentMethod === 'paypal') {
-      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(paypalEmail)) {
-          document.getElementById('paypalMessage').textContent = 'El correo electrónico no es válido';
-          isValid = false;
-      }
+    if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(paypalEmail)) {
+      document.getElementById('paypalMessage').textContent = 'El correo electrónico no es válido.';
+      isValid = false;
+    }
   } else if (paymentMethod === 'bankTransfer') {
-      if (bankTransferFile === 0) {
-          document.getElementById('bankTransferMessage').textContent = 'Debes subir un archivo PDF como justificante';
-          isValid = false;
-      }
+    if (bankTransferFile === 0) {
+      document.getElementById('bankTransferMessage').textContent = 'Debes subir un archivo PDF como justificante.';
+      isValid = false;
+    }
   }
 
-  // Si todo es válido, enviar el formulario
   if (isValid) {
-      document.getElementById('paymentForm').submit();
+    const totalCarrito = parseFloat(document.getElementById('precioCarritoDescuento').textContent);
 
-      //Falta trael el precio del local storage
-      //Falta gurdar en localstorag
-      window.location.href = 'SistemasPago/index.html';
+    // Crear datos para guardar en localStorage
+    const paymentData = {
+      paymentMethod,
+      total: totalCarrito,
+      descuento: descuentoAplicado,
+      details: {}
+    };
+
+    if (paymentMethod === 'card') {
+      paymentData.details = {
+        cardNumber,
+        expiryDate,
+        cvc
+      };
+    } else if (paymentMethod === 'paypal') {
+      paymentData.details = {
+        paypalEmail
+      };
+    } else if (paymentMethod === 'bankTransfer') {
+      paymentData.details = {
+        bankTransferProof: "Archivo cargado"
+      };
+    }
+
+    // Guardar en localStorage
+    localStorage.setItem('paymentInfo', JSON.stringify(paymentData));
+
+    console.log('Datos guardados en localStorage:', paymentData);
+
+    window.location.href = 'ConfirmacionCompra/index.html';
   }
 });
 
+function limpiarCarritoStorage(){
+if (localStorage.getItem('carrito')) {
+  localStorage.removeItem('carrito');
+  console.log('Clave eliminada');
+}
+if (localStorage.getItem('formData')) {
+  localStorage.removeItem('formData');
+  console.log('Clave eliminada');
+}
+if (localStorage.getItem('paymentInfo')) {
+  localStorage.removeItem('paymentInfo');
+  console.log('Clave eliminada');
+}
+  window.location.href = '/../../../../../../Catalogo/Detalles/Carrito/index.html';
+}

@@ -1,0 +1,15 @@
+
+@media screen and (min-width: 576px) {
+
+}
+
+/* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
+@media screen and (min-width: 912px),
+  (min-width: 576px) and (orientation: landscape) {
+
+}
+
+/* Escritorio grande */
+@media screen and (min-width: 1024px) {
+
+}

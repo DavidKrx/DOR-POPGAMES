@@ -1,3 +1,4 @@
-img:hover {
+img:hover, img:focus{
     scale: 1.05;
+    /*cursor: pointer;*/
   }

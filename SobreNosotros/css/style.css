@@ -4,15 +4,16 @@ body {
   display: grid;
   grid-template-areas:
     "head"
+    "nava"
     "main"
     "foot";
     font-size: var(--font-size-base); /* Tamaño intermedio inicial */
     line-height: 1.6;
     font-family: Arial, sans-serif;
 }
-main  {  margin: 1rem;}
-h1 {
-text-align: center;
+nav{
+  display: flex;
+  justify-content: center;
 }
 
 .team {
@@ -59,6 +60,7 @@ text-align: center;
 
 section > span, section >p , .content > p {
   text-indent: 1rem;
+  margin: 1.5rem;
  }
 
  .team span{
@@ -83,9 +85,6 @@ section > span, section >p , .content > p {
 }
 
 @media screen and (min-width: 576px) {
-  .team-member:nth-child(5){
-    grid-column: span 2; /* Cada uno ocupa 1 columna */
-  }
   
 }
 

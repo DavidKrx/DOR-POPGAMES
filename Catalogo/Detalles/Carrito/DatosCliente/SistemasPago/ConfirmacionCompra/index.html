@@ -7,7 +7,7 @@
       name="description"
       content="Detalles de un juego, en este caso Super Mario Party Jamboree"
     />
-    <title>Detalles Super Mario Party Jamboree</title>
+    <title>Confirmación de compra</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,10 +22,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../../../../css/general.css" />
-    <link rel="stylesheet" href="../css/carrito.css" />
+    <link rel="stylesheet" href="../../../../../../css/general.css" />
+    <link rel="stylesheet" href="../../../css/carrito.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
+
   <body>
     <!--Header-->
     <header>
@@ -52,9 +53,9 @@
           <i id="theme" class="fa-solid fa-moon"></i>
         </button>
         <button class="buttonCarrito" onclick="limpiarCarritoStorage()" aria-label="carrito">  
-          <svg viewBox="0 0 576 512">
-            <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-      </button> 
+            <svg viewBox="0 0 576 512">
+              <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+        </button> 
         <a href="#" aria-label="Contactenos">
           <svg fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
             <path
@@ -86,113 +87,26 @@
       <ul class="etapas" aria-label="Etapas del carrito">
         <li>
           <div class="etapaRealizada"><span>1</span></div>
-          <div><a href="./../index.html">Carrito</a></div>
+          <div><a href="./../../../index.html">Carrito</a></div>
         </li>
         <li>
-            <div class="etapa" id="realizandoProceso"><span>2</span></div>
-            <div><a class="etapaEnProceso">Datos del cliente</a></div>
+            <div class="etapaRealizada"><span>2</span></div>
+            <div><a href="./../../index.html">Datos del cliente</a></div>
         </li>
         <li>
-            <div class="etapa"><span>3</span></div>
-            <div><span>Sistemas de pago</span></div>   
+            <div class="etapaRealizada"><span>3</span></div>
+            <div><a href="./../../index.html">Sistemas de pago</a></div>   
         </li>
         <li>
-            <div class="etapa"><span>4</span></div>
-            <div><span>Confirmación de compra</span></div>
+            <div class="etapa" id="realizandoProceso"><span>4</span></div>
+            <div><span class="etapaEnProceso">Confirmación de compra</span></div>
         </li>
       </ul>
     </nav>
     <main>
-      <h1>Datos del cliente</h1>
-        <!-- Datos Personales -->
-        <div class="category" id="personalData">
-          <h2>Datos Personales</h2>
-          <div class="input-group">
-            <label for="fullName">Nombre Completo:</label>
-            <input type="text" id="fullName" name="fullName" pattern="[A-Za-z]+" minlength="4" maxlength="20" required>
-            <span id="errorfullName" class="error"></span>
-          </div>
-          <div class="input-group">
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required>
-            <span id="erroremail" class="error"></span>
-          </div>
-        </div>
-      
-        <!-- Datos de Envío -->
-        <div class="category" id="shippingData">
-          <h2>Datos de Envío</h2>
-          <div class="input-group">
-            <label for="shippingPostalcod">Codigo Postal:</label>
-            <input id="shippingPostalcod" name="shippingPostalcod" type="text" pattern="^38[0-9]{3}$" placeholder="38XXX" maxlength="5" required>
-            <span id="errorshippingPostalcod" class="error"></span>
-          </div>
-          <div class="input-group">
-            <label for="shippingAddress">Dirección de Envío:</label>
-            <input type="text" id="shippingAddress" name="shippingAddress" size="30" required>
-            <span id="errorshippingAddress" class="error"></span>
-          </div>
-        </div>
-      
-        <!-- Datos de Facturación -->
-        <div class="category" id="billingData">
-          <h2>Datos de Facturación</h2>
-          <div class="input-group">
-            <input type="checkbox" id="sameAsShipping" name="sameAsShipping" onclick="toggleBillingData()"> 
-            <label for="sameAsShipping">Mis datos de facturación son los mismos que los de envío</label>
-          </div>
-          <div class="input-group">
-            <label for="codP">Codigo Postal de Facturación:</label>
-            <input id="billingPostalcod" name="billingPostalcod" type="text" pattern="^38[0-9]{3}$" placeholder="38XXX" maxlength="5" required>
-            <span id="errorbillingPostalcod" class="error"></span>
-          </div>
-          <div class="input-group">
-            <label for="billingAddress">Dirección de Facturación:</label>
-            <input type="text" id="billingAddress" name="billingAddress" size="30" required>
-            <span id="errorbillingAddress" class="error"></span>
-          </div>
-        </div>
-      
-        <!-- Datos de Contacto -->
-        <div class="category" id="contactData">
-          <h2>Datos de Contacto</h2>
-          <div class="input-group">
-            <label for="phoneNumber">Teléfono de Contacto:</label>
-            <input type="text" id="phoneNumber" name="phoneNumber" required>
-            <span id="errorphoneNumber" class="error"></span>
-          </div>
-        </div>
-      
-        <!-- Zona de Envío -->
-        <div class="category" id="shippingZone">
-          <h2>Zona de Envío</h2>
-          <div class="input-group">
-            <label for="zone">Selecciona tu zona de envío:</label>
-            <select id="zone" name="zone" onchange="updateShippingMethods()" required>
-              <option value="">Seleccionar...</option>
-              <option value="zona1">Zona 1 (Métodos: Estándar, Exprés)</option>
-              <option value="zona2">Zona 2 (Método: Económico)</option>
-              <option value="zona3">Zona 3 (No servida)</option>
-            </select>
-            <span id="errorzone" class="error"></span>
-          </div>
-          <div class="input-group hidden" id="methods">
-            <label for="shippingMethod">Selecciona un método de envío:</label>
-            <select id="shippingMethod" name="shippingMethod" required>
-              <option value="">Seleccionar...</option>
-            </select>
-            <span id="errorshippingMethod" class="error"></span>
-          </div>
-        </div>
-      
-        <!-- Botón para Enviar -->
-        <div>
-          <button class="button" type="button" id="saveButton" onclick="validateForm()">Continuar</button>
-        </div>
-        <div>
-          <a class="button" href="../index.html"><i class="fa-solid fa-arrow-left"></i>Atras</a>
-        </div>
-        
+      <h1>Confirmación de compra</h1>
+      <a class="button" href="../index.html"><i class="fa-solid fa-arrow-left"></i>Atras</a>
+    </div>
     </main>
     <!---->
     <!--Footer-->
@@ -258,7 +172,7 @@
         </div>
       </div>
     </footer>
-    <script src="../../../../js/script.js"></script>
+    <script src="../../../../../../js/script.js"></script>
     <!---->
   </body>
 </html>

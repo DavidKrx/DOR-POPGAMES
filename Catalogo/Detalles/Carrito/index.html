@@ -52,10 +52,10 @@
         <button aria-label="Modo" onclick="modo()">
           <i id="theme" class="fa-solid fa-moon"></i>
         </button>
-        <a class="buttonCarrito" href="" aria-label="carrito">  
+        <button class="buttonCarrito" onclick="limpiarCarritoStorage()" aria-label="carrito">  
           <svg viewBox="0 0 576 512">
             <path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
-        </a> 
+      </button> 
         <a href="#" aria-label="Contactenos">
           <svg fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
             <path
@@ -108,7 +108,7 @@
         <!--Contenido de la cesta-->
         <div class="cesta" id="carrito">
           <h1>Mi cesta</h1>
-          <article class="artic" id="super">
+          <article class="artic" id="supermarioId">
             <div class="juego">
                 <input type="checkbox" id="game1" value="Super Mario" class="input" checked>
               <div>
@@ -116,13 +116,13 @@
               </div>
               <div class="articleConten">
               <h2 aria-label="nombre" class="name">Super Mario</h2>
-              <div><span aria-label="precio" class="price">39.99</span><span> €</span></div>
-              <span>Recíbelo entre el miércoles 1 y el jueves 2 de enero</span>
+              <div><span>Precio por Unidad: </span><span aria-label="precio" class="price">39.99</span><span> €</span></div>
+              <span id="supermarioPriceXcantidad"></span>
               </div>
             </div>
             <div class="actions">
               <div>              
-                <button aria-label="borrar" onclick="borrar('supermario')">
+                <button aria-label="borrar" onclick="borrar('supermarioId')">
                 <i class="fa-solid fa-trash"></i>
               </button>
             </div>
@@ -138,7 +138,7 @@
             </div>
           </article>
 
-          <article class="artic" id="meta">
+          <article class="artic" id="metaphId">
             <div class="juego">
               <input type="checkbox" id="game2" value="Metaphor" class="input" checked>
               <div>
@@ -147,14 +147,14 @@
               <div class="articleConten">
               <h2 aria-label="nombre" class="name">Metaphor</h2>
               <div>
-                <span aria-label="precio" class="price">60.00</span><span> €</span>
+                <span>Precio por Unidad: </span><span aria-label="precio" class="price">60.00</span><span> €</span>
               </div>
               
-              <span>Recíbelo entre el miércoles 1 y el jueves 2 de febrero</span>
+              <span id="metaphPriceXcantidad"></span>
               </div>
             </div>
             <div class="actions">
-              <button aria-label="borrar" class="action" onclick="borrar('meta')">
+              <button aria-label="borrar" class="action" onclick="borrar('metaphId')">
                 <i class="fa-solid fa-trash"></i>
               </button>
               <div class="unidades">
@@ -169,7 +169,7 @@
             </div>
           </article>
 
-          <article class="artic" id="dragon">
+          <article class="artic" id="dragonballId">
             <div class="juego">
               <input type="checkbox" id="game3" value="dragonball" class="input" checked>
               <div>
@@ -178,14 +178,14 @@
               <div class="articleConten">
               <h2 aria-label="nombre" class="name">Dragonball</h2>
               <div>
-                <span aria-label="precio" class="price">79.99</span><span> €</span>
+                <span>Precio por Unidad: </span><span aria-label="precio" class="price">79.99</span><span> €</span>
               </div>
               
-              <span>Recíbelo entre el miércoles 1 y el jueves 2 de febrero</span>
+              <span id="dragonballPriceXcantidad"></span>
               </div>
             </div>
             <div class="actions">
-              <button aria-label="borrar" class="action" onclick="borrar('dragon')">
+              <button aria-label="borrar" class="action" onclick="borrar('dragonballId')">
                 <i class="fa-solid fa-trash"></i>
               </button>
               <div class="unidades">
@@ -200,7 +200,7 @@
             </div>
           </article>
 
-          <article class="artic" id="sillent">
+          <article class="artic" id="sillenthillId">
             <div class="juego">
               <input type="checkbox" id="game4" value="sillenthill" class="input" checked>
               <div>
@@ -209,14 +209,14 @@
               <div class="articleConten">
               <h2 aria-label="nombre" class="name">Sillent Hill 2</h2>
               <div>
-                <span class="price" aria-label="precio">39.99</span><span> €</span>
+                <span>Precio por Unidad: </span><span class="price" aria-label="precio">39.99</span><span> €</span>
               </div>
               
-              <span>Recíbelo entre el miércoles 1 y el jueves 2 de febrero</span>
+              <span id="sillenthillPriceXcantidad"></span>
               </div>
             </div>
             <div class="actions">
-              <button aria-label="borrar" class="action" onclick="borrar('sillent')">
+              <button aria-label="borrar" class="action" onclick="borrar('sillenthillId')">
                 <i class="fa-solid fa-trash"></i>
               </button>
               <div class="unidades">
@@ -306,8 +306,8 @@
       <div>
         <span>Nuestra Empresa</span>
         <ul>
-          <li><a href="#">Sobre nosotros</a></li>
-          <li><a href="#">Contactenos</a></li>
+          <li><a href="./../../SobreNosotros/index.html">Sobre nosotros</a></li>
+          <li><a href="./../../SobreNosotros/index.html">Contactenos</a></li>
         </ul>
       </div>
       <div>
