@@ -18,7 +18,8 @@ main > section {
   display: flex;
   flex-direction: column;
 }
-
+#user-info-container,#payment-info-container{  display: flex;
+  flex-direction: column;}
 @media screen and (min-width: 576px) {
 
 }
