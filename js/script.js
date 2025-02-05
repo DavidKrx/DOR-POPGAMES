@@ -802,6 +802,7 @@ if (localStorage.getItem("carrito")){
     // Verificamos si los datos existen antes de procesarlos
     if (userInfo) {
         // Contenedor donde se agregará la información
+        if(document.getElementById("user-info-container")){
         const userInfoContainer = document.getElementById("user-info-container");
 
         // Creamos un artículo que contiene la información del usuario
@@ -824,6 +825,7 @@ if (localStorage.getItem("carrito")){
 
         // Agregamos el artículo al contenedor principal
         userInfoContainer.appendChild(userCard);
+        }
     } else {
     }
 

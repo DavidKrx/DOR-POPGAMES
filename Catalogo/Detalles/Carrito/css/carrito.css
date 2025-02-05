@@ -70,6 +70,18 @@
     .error{
       color: red;
   }
+  fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 0.1rem;
+    border-radius: 5px;
+    margin: 1rem;
+}
+button, .button {
+  padding: 0.3rem;
+}
 
     /* Tablets y phablets  2 */
   @media screen and (min-width: 576px) {

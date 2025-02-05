@@ -102,6 +102,9 @@
     align-items: center;
   }
 
+  #restablecer{
+    padding: 0;
+  } 
   nav {
     /*Barra de navegacion de plataformas de juegos*/
     grid-area: nava;
@@ -267,6 +270,10 @@
   }
   /* Estilos para el modo oscuro (dark mode) */
 
+  button, .button {
+    padding: 0.5rem;
+  }
+  
   
   /* Tablets y phablets  2 */
   @media screen and (min-width: 576px) {

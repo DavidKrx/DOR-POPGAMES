@@ -16,14 +16,7 @@
             flex-direction: column;
         }
         
-fieldset {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-bottom: 0.1rem;
-    border-radius: 5px;
-}
+
 fieldset > div {
     display: flex;
     flex-direction: column;
