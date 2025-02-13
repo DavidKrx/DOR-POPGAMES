@@ -606,7 +606,18 @@ if (localStorage.getItem('carrito')) {
   const carrito = JSON.parse(localStorage.getItem("carrito"));
   let doubleee= carrito.total.toFixed(2);
   if(document.getElementById('precioCarritoDescuento')){
-  document.getElementById('precioCarritoDescuento').textContent=doubleee;}
+    if(localStorage.getItem('formData')){
+      const formJson = JSON.parse(localStorage.getItem("formData"));
+      const costEnvio=document.getElementById('costEnvio');
+      if (formJson.method==='Envio a casa') {
+        costEnvio.textContent='Costes de envio: 10 €'
+        document.getElementById('precioCarritoDescuento').textContent=parseFloat(doubleee)+10;
+      } else {
+        costEnvio.textContent='Costes de envio: 0 €'
+        document.getElementById('precioCarritoDescuento').textContent=doubleee;
+      }
+    }
+}
 }
 
 if (document.getElementById('paymentMethod')){
@@ -626,17 +637,37 @@ document.getElementById('discountCode').addEventListener('input', function () {
 
   let precioActual = parseFloat(precioCarritoDescuento.textContent);
 
-  if (discountCode === 'DESCUENTO10') {
+  if (discountCode==='DAW') {
     discountMessage.textContent = 'Código válido. Descuento: 10%';
+    discountMessage.style.color="green"
     descuentoAplicado = 10;
     precioCarritoDescuento.textContent = (precioActual - precioActual * 0.10).toFixed(2);
-  } else if (discountCode === 'DESCUENTO20') {
+  } else if (discountCode === 'DOR') {
     discountMessage.textContent = 'Código válido. Descuento: 20%';
+    discountMessage.style.color="green"
     descuentoAplicado = 20;
     precioCarritoDescuento.textContent = (precioActual - precioActual * 0.20).toFixed(2);
   } else {
     discountMessage.textContent = 'Código no válido';
     descuentoAplicado = 0;
+    discountMessage.style.color="red"
+    if (localStorage.getItem('carrito')) {
+      const carrito = JSON.parse(localStorage.getItem("carrito"));
+      let doubleee= carrito.total.toFixed(2);
+      if(document.getElementById('precioCarritoDescuento')){
+        if(localStorage.getItem('formData')){
+          const formJson = JSON.parse(localStorage.getItem("formData"));
+          const costEnvio=document.getElementById('costEnvio');
+          if (formJson.method==='Envio a casa') {
+            costEnvio.textContent='Costes de envio: 10 €'
+            document.getElementById('precioCarritoDescuento').textContent=parseFloat(doubleee)+10;
+          } else {
+            costEnvio.textContent='Costes de envio: 0 €'
+            document.getElementById('precioCarritoDescuento').textContent=doubleee;
+          }
+        }
+    }
+    }
   }
 });
 }
@@ -651,7 +682,7 @@ document.getElementById('paymentForm').addEventListener('submit', function (e) {
   const cvc = document.getElementById('cvc').value;
   const expiryDate = document.getElementById('expiryDate').value;
   const paypalEmail = document.getElementById('paypalEmail').value;
-  const bankTransferFile = document.getElementById('bankTransferFile').files.length;
+  const bankTransferFile = document.getElementById('bankTransferFile');
 
   if (paymentMethod === 'card') {
     if (!/^\d{16}$/.test(cardNumber) || !/^\d{3}$/.test(cvc) || !/^\d{2}\/\d{2}$/.test(expiryDate) ||cardNumber.value=="") {
@@ -664,10 +695,14 @@ document.getElementById('paymentForm').addEventListener('submit', function (e) {
       isValid = false;
     }
   } else if (paymentMethod === 'bankTransfer') {
-    if (bankTransferFile === 0) {
+    if (bankTransferFile.files.length === 0) {
       document.getElementById('bankTransferMessage').textContent = 'Debes subir un archivo PDF como justificante.';
       isValid = false;
     }
+    if (!bankTransferFile.value.endsWith(".pdf")) {
+      document.getElementById('bankTransferMessage').textContent = 'Debes subir un archivo PDF como justificante.';
+      isValid = false;
+  }
   }
 
   if (isValid) {
@@ -733,12 +768,20 @@ function loadPaymentData() {
       document.getElementById('paypalEmail').value = paymentData.details.paypalEmail || '';
     } else if (paymentData.paymentMethod === 'bankTransfer') {
       // No se puede restaurar el archivo cargado, pero puedes mostrar un mensaje
-      document.getElementById('bankTransferMessage').textContent = 'Archivo cargado previamente.';
+      //document.getElementById('bankTransferMessage').textContent = 'Archivo cargado previamente.';
     }
-
+    const discountMessage = document.getElementById('discountMessage');
     // Restaurar el descuento aplicado
     if (paymentData.descuento) {
-      document.getElementById('discountCode').value = 'DESCUENTO' + paymentData.descuento;
+      if (paymentData.descuento=='10') {
+        document.getElementById('discountCode').value = 'DAW';
+        discountMessage.style.color="green"
+      }
+      if (paymentData.descuento=='20') {
+        document.getElementById('discountCode').value = 'DEW';
+        discountMessage.style.color="green"
+      }
+
       document.getElementById('discountMessage').textContent = `Código válido. Descuento: ${paymentData.descuento}%`;
       const precioCarritoDescuento = document.getElementById('precioCarritoDescuento');
       precioCarritoDescuento.textContent = (paymentData.total).toFixed(2);
@@ -759,7 +802,7 @@ if (localStorage.getItem('paymentInfo')) {
   localStorage.removeItem('paymentInfo');
   console.log('Clave eliminada');
 }
-  window.location.href = '/../../../../../../Catalogo/Detalles/Carrito/index.html';
+  window.location.href = './../../../../../../index.html';
 }
 if (localStorage.getItem("carrito")){
     // Recuperamos el carrito del localStorage
@@ -781,13 +824,12 @@ if (localStorage.getItem("carrito")){
                  <span>Precio Unitario: $${producto.precio.toFixed(2)}</span>
                  <span class="precio">Precio Total: $${producto.total.toFixed(2)}</span>
                 <div>
-                <img alt="PNG" src="./../../../../../../../../../img/${producto.id}.png"/>
+                <img alt="WEBP" src="./../../../../../../img/${producto.id}.webp"/>
                 </div>
-            `;
-            
+            `;      
             // Añadimos la card al contenedor del carrito
             carritoContainer.appendChild(card);
-
+            
         });
     } else {
         carritoContainer.innerHTML = "<p>No hay productos en el carrito.</p>";
@@ -803,28 +845,43 @@ if (localStorage.getItem("carrito")){
     if (userInfo) {
         // Contenedor donde se agregará la información
         if(document.getElementById("user-info-container")){
-        const userInfoContainer = document.getElementById("user-info-container");
+          const userInfoContainer = document.getElementById("user-info-container");
 
-        // Creamos un artículo que contiene la información del usuario
-        const userCard = document.createElement("article");
-        userCard.classList.add("card");
-
-        // Agregamos la información al artículo
-        userCard.innerHTML = `
-            <span><span class="highlight">Nombre Completo:</span> ${userInfo.fullName}</span>
-            <span><span class="highlight">Correo Electrónico:</span> ${userInfo.email}</span>
-            <span><span class="highlight">Dirección de Envío:</span> ${userInfo.shippingAddress}</span>
-            <span><span class="highlight">Código Postal de Envío:</span> ${userInfo.shippingPostalcod}</span>
-            <span><span class="highlight">Número de Teléfono:</span> ${userInfo.phoneNumber}</span>
-            <span><span class="highlight">Zona:</span> ${userInfo.zone}</span>
-            <span><span class="highlight">Método de Envío:</span> ${userInfo.method}</span>
-            <span><span class="highlight">¿Es la misma dirección de envío?</span> ${userInfo.sameAsShipping ? 'Sí' : 'No'}</span>
-            <span><span class="highlight">Dirección de Facturación:</span> ${userInfo.billingAddress || userInfo.shippingAddress}</span>
-            <span><span class="highlight">Código Postal de Facturación:</span> ${userInfo.billingPostalcod || userInfo.shippingPostalcod}</span>
-        `;
-
-        // Agregamos el artículo al contenedor principal
-        userInfoContainer.appendChild(userCard);
+          // Creamos un artículo que contiene la información del usuario
+          const userCard = document.createElement("article");
+          //userCard.classList.add("card");
+          
+          // Función para crear un span con la información del usuario
+          function createInfoSpan(label, value) {
+            const span = document.createElement("span");
+            const highlight = document.createElement("span");
+            highlight.classList.add("highlight");
+            highlight.textContent = label;
+            span.appendChild(highlight);
+            span.appendChild(document.createTextNode(` ${value}`));
+            return span;
+          }
+          
+          // Agregamos la información al artículo
+          userCard.appendChild(createInfoSpan("Nombre Completo:", userInfo.fullName));
+          userCard.appendChild(createInfoSpan("Correo Electrónico:", userInfo.email));
+          userCard.appendChild(createInfoSpan("Dirección de Envío:", userInfo.shippingAddress));
+          userCard.appendChild(createInfoSpan("Código Postal de Envío:", userInfo.shippingPostalcod));
+          userCard.appendChild(createInfoSpan("Número de Teléfono:", userInfo.phoneNumber));
+          userCard.appendChild(createInfoSpan("Zona:", userInfo.zone));
+          if (userInfo.method=="Envio a casa"){
+            userCard.appendChild(createInfoSpan("Método de Envío:", userInfo.method));
+            userCard.appendChild(createInfoSpan("Costes de envio: ", "10 €"));
+          }
+          else {
+            userCard.appendChild(createInfoSpan("Método de Envío:", userInfo.method));
+          }
+          userCard.appendChild(createInfoSpan("¿Es la misma dirección de envío?", userInfo.sameAsShipping ? 'Sí' : 'No'));
+          userCard.appendChild(createInfoSpan("Dirección de Facturación:", userInfo.billingAddress || userInfo.shippingAddress));
+          userCard.appendChild(createInfoSpan("Código Postal de Facturación:", userInfo.billingPostalcod || userInfo.shippingPostalcod));
+          
+          // Agregamos el artículo al contenedor principal
+          userInfoContainer.appendChild(userCard);
         }
     } else {
     }
@@ -847,28 +904,41 @@ if (localStorage.getItem("carrito")){
         };
     
         // Agregar los datos del paymentInfo al article
-        article.appendChild(createSpan('Método de Pago', paymentInfo.paymentMethod));
+        const userInfo = JSON.parse(localStorage.getItem('formData'));
         // Agregar los detalles específicos del método de pago
         if (paymentInfo.paymentMethod === 'card') {
-        
+          article.appendChild(createSpan('Método de Pago', 'Tarjeta'));
           article.appendChild(createSpan('Titular de la Tarjeta', paymentInfo.details.cardName));
           article.appendChild(createSpan('Número de Tarjeta', paymentInfo.details.cardNumber));
           article.appendChild(createSpan('Fecha de Expiración', paymentInfo.details.expiryDate));
           article.appendChild(createSpan('CVC', paymentInfo.details.cvc));
         } else if (paymentInfo.paymentMethod === 'paypal') {
+          article.appendChild(createSpan('Método de Pago', 'Paypal'));
           article.appendChild(createSpan('Correo de PayPal', paymentInfo.details.paypalEmail));
         } else if (paymentInfo.paymentMethod === 'bankTransfer') {
+          article.appendChild(createSpan('Método de Pago', 'Transferencia bancaria'));
           article.appendChild(createSpan('Justificante', paymentInfo.details.bankTransferProof));
         }
         article.appendChild(createSpan('Descuento', `${paymentInfo.descuento}%`));
         if (localStorage.getItem('carrito')) {
           const carrito = JSON.parse(localStorage.getItem("carrito"));
           let totalfinal= carrito.total.toFixed(2);
-          article.appendChild(createSpan('Total(descuentos no aplicados)', totalfinal));
-          if(paymentInfo.descuento>0){
-            totalfinal = (totalfinal - ((totalfinal * paymentInfo.descuento)/100)).toFixed(2);}
 
-            article.appendChild(createSpan('Total', totalfinal));
+          if (userInfo.method=="Envio a casa"){
+            article.appendChild(createSpan('Total(descuentos no aplicados)', (parseFloat(totalfinal)+10)+' €'));
+            if(paymentInfo.descuento>0){
+              totalfinal = (totalfinal - (((totalfinal+10) * paymentInfo.descuento)/100)).toFixed(2);}
+            else{
+              totalfinal = parseFloat(totalfinal)+10;
+            }
+          } else{
+            article.appendChild(createSpan('Total(descuentos no aplicados)', totalfinal+' €'));
+            if(paymentInfo.descuento>0){
+              totalfinal = (totalfinal - (((totalfinal) * paymentInfo.descuento)/100)).toFixed(2);}
+          }
+          
+   
+            article.appendChild(createSpan('Total', totalfinal+' €'));
         }
         // Agregar el article al cuerpo del documento
         paymentInfoContainer.appendChild(article);
@@ -877,3 +947,58 @@ if (localStorage.getItem("carrito")){
       }
     }
     displayPaymentInfo();
+
+    function showCustomAlert(message) {
+      // Crear el fondo oscuro
+      const overlay = document.createElement('div');
+      overlay.style.position = 'fixed';
+      overlay.style.top = '0';
+      overlay.style.left = '0';
+      overlay.style.width = '100%';
+      overlay.style.height = '100%';
+      overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+      overlay.style.display = 'flex';
+      overlay.style.justifyContent = 'center';
+      overlay.style.alignItems = 'center';
+      overlay.style.zIndex = '1000';
+    
+      // Crear el contenido del alert
+      const alertBox = document.createElement('div');
+      alertBox.style.backgroundColor = 'white';
+      alertBox.style.padding = '20px';
+      alertBox.style.borderRadius = '10px';
+      alertBox.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+      alertBox.style.textAlign = 'center';
+      alertBox.style.maxWidth = '300px';
+    
+      // Crear el mensaje del alert
+      const alertMessage = document.createElement('p');
+      alertMessage.textContent = message;
+      alertMessage.style.margin = '0 0 20px 0';
+    
+      // Crear el botón de aceptar
+      const acceptButton = document.createElement('button');
+      acceptButton.textContent = 'Aceptar';
+      acceptButton.style.backgroundColor = '#007bff';
+      acceptButton.style.color = 'white';
+      acceptButton.style.border = 'none';
+      acceptButton.style.padding = '10px 20px';
+      acceptButton.style.borderRadius = '5px';
+      acceptButton.style.cursor = 'pointer';
+    
+      // Cerrar el alert al hacer clic en "Aceptar"
+      acceptButton.addEventListener('click', () => {
+        limpiarCarritoStorage();
+      });
+    
+      // Agregar elementos al DOM
+      alertBox.appendChild(alertMessage);
+      alertBox.appendChild(acceptButton);
+      overlay.appendChild(alertBox);
+      document.body.appendChild(overlay);
+
+    }
+    
+    function completePurchase(){
+      showCustomAlert('Muchas gracias por su compra');
+    }

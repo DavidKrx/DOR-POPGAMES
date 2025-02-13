@@ -2,12 +2,16 @@ main > section {
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem;
 }
 .card {
   padding: 0.1 rem;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  /*text-align: center;*/
+  align-items: center;
+  background-color: var(--color-nav-aside);
 }
 .card img {
   width: 100%;
@@ -18,8 +22,22 @@ main > section {
   display: flex;
   flex-direction: column;
 }
-#user-info-container,#payment-info-container{  display: flex;
+#user-info-container,#payment-info-container{  
+  display: flex;
   flex-direction: column;}
+
+#user-info-container > article,#payment-info-container > article {
+  align-items: flex-start;
+}
+
+.sectionButton{
+  display: flex;
+  justify-content: center;
+}
+.highlight {
+  font-weight: 600;
+}
+
 @media screen and (min-width: 576px) {
 
 }

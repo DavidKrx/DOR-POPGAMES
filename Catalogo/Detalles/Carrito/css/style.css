@@ -42,6 +42,7 @@ article .juego{
 .resumen {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .resumen div{
   display: flex;
@@ -106,21 +107,33 @@ input[type=number]::-webkit-outer-spin-button {
   pointer-events: none;        /* Desactiva la interacción con los elementos dentro del artículo */
 }
 
+article {
+  align-items: baseline;
+}
+
+.cantidad {
+  width: 3rem; /* Ancho fijo para el input de cantidad */
+  text-align: center; /* Centra el texto dentro del input */
+}
+
+
 @media screen and (min-width: 576px) {
 }
 
 /* Escritorio pequeño / tablet  3 */ /* para pantallas de entre 576 y 1023 px en horizontal y vertical*/
 @media screen and (min-width: 912px),
   (min-width: 576px) and (orientation: landscape) {
-    main > section { /*Secciones del juego*/
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-    }
     .recomendados {
       display: grid;
       grid-template-columns: 1fr 1fr;
     }
-
+    img {
+      width: auto;
+      height: auto;
+    }
+    #space {
+      align-items: center;
+    }
 }
 
 /* Escritorio grande */
@@ -133,10 +146,24 @@ input[type=number]::-webkit-outer-spin-button {
     flex-direction: row;
   }
 
-  .resumen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .artic {
+    display: flex; /* Activa flexbox */
+    flex-direction: row; /* Dirección horizontal (por defecto) */
+    width: 100%; /* Asegura que el artículo ocupe todo el ancho disponible */
   }
-
+  
+  .juego {
+    flex: 80%; /* Ocupa el 80% del espacio disponible */
+    display: flex; /* Flexbox para alinear el contenido interno */
+    align-items: center; /* Centra verticalmente el contenido */
+    gap: 10px; /* Espacio entre los elementos internos */
+  }
+  
+  .actions {
+    flex: 20%; /* Ocupa el 20% del espacio disponible */
+    display: flex; /* Flexbox para alinear el contenido interno */
+    align-items: center; /* Centra verticalmente el contenido */
+    /*justify-content: flex-end; /* Alinea el contenido a la derecha */
+    gap: 10px; /* Espacio entre los elementos internos */
+  }
 }
